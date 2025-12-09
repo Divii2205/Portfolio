@@ -1,10 +1,23 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Hero from '@/components/Hero'
+import Cursor from '@/components/Cursor'
 
 export default function Home() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY })
+    }
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
+
   return (
     <main className="min-h-screen">
+      <Cursor mousePosition={mousePosition} />
       <Hero />
     </main>
   )
