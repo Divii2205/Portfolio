@@ -23,13 +23,13 @@ body {
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#d8b4fe] via-[#c084fc] to-[#f472b6];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#d8b4fe] via-[#f0abfc] to-[#fda4af];
   }
-  
+
   .glass-effect {
     @apply bg-white/10 backdrop-blur-md border border-white/10;
   }
-  
+
   .hover-lift {
     @apply transition-transform duration-300 hover:-translate-y-2;
   }
@@ -37,20 +37,30 @@ body {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 4px;
+  background: transparent;
 }
 
-::-webkit-scrollbar-track {
-  background: #000;
-}
-
+/* Default hidden state */
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #2563eb, #7c3aed);
+  background: transparent;
   border-radius: 5px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #1d4ed8, #6d28d9);
+/* Show when scrolling */
+html.scrolling ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg,
+      #7c3aed 0%,
+      #f6c2ff 50%,
+      #7c3aed 100%);
+  background-size: 100% 200%;
+  background-position: top;
+  border-radius: 5px;
+  transition: background-position 2s ease;
+}
+
+html.scrolling ::-webkit-scrollbar-thumb:hover {
+  background-position: bottom;
 }
 
 /* Cursor effect */
@@ -75,7 +85,8 @@ body {
 }
 
 /* Subtle transitions */
-a, button {
+a,
+button {
   transition: all 0.25s ease;
 }
 
@@ -84,4 +95,3 @@ a, button {
   background: rgba(37, 99, 235, 0.35);
   color: white;
 }
-

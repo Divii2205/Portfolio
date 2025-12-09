@@ -20,9 +20,9 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen overflow-hidden bg-gradient-to-right from-[#050505] via-[#1a1029] to-[#b197f5] text-white"
+      className="flex flex-col justify-center min-h-screen overflow-hidden text-white"
     >
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-16 lg:py-24">
+      <div className="relative z-1 max-w-6xl mx-auto px-6 py-12 lg:py-16">
         <motion.div
           className="grid lg:grid-cols-[1.05fr_0.95fr] gap-12 items-center"
           variants={container}
@@ -46,9 +46,9 @@ export default function Hero() {
 
             <motion.div variants={item} className="space-y-1">
               <p className="text-base sm:text-lg text-gray-200 max-w-2xl leading-relaxed">
-              Passionate UI/UX designer and developer who builds with purpose. 
-              I am driven to create experiences that make an impact. 
-              A keen explorer, lifelong learner, and open collaborator.
+                Passionate UI/UX designer and developer who builds with purpose.
+                I am driven to create experiences that make an impact.
+                A keen explorer, lifelong learner, and open collaborator.
               </p>
             </motion.div>
 
@@ -90,7 +90,7 @@ export default function Hero() {
 
           {/* Right visual */}
           <motion.div variants={item} className="relative flex justify-center">
-            
+
           </motion.div>
         </motion.div>
       </div>
