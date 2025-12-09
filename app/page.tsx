@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import Hero from '@/components/Hero'
 import Cursor from '@/components/Cursor'
+import Navigation from '@/components/Navigation'
 
 export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -18,6 +19,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <Cursor mousePosition={mousePosition} />
+      <Navigation />
       <Hero />
     </main>
   )

@@ -29,29 +29,35 @@ export default function Cursor({ mousePosition }: CursorProps) {
   }, [mousePosition, dotX, dotY, outlineX, outlineY])
 
   useEffect(() => {
-    const handleMouseEnter = () => setIsHovering(true)
-    const handleMouseLeave = () => setIsHovering(false)
     const handleMouseDown = () => setIsClicking(true)
     const handleMouseUp = () => setIsClicking(false)
 
-    const interactive = document.querySelectorAll('a, button, [role="button"], input, textarea')
-    interactive.forEach((el) => {
-      el.addEventListener('mouseenter', handleMouseEnter)
-      el.addEventListener('mouseleave', handleMouseLeave)
-      el.addEventListener('mousedown', handleMouseDown)
-      el.addEventListener('mouseup', handleMouseUp)
-    })
+    // Use event delegation for hover detection
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      // Check if the target or its parents are interactive
+      const isInteractive = target.closest('a, button, [role="button"], input, textarea, .cursor-pointer')
+      if (isInteractive) {
+        setIsHovering(true)
+      }
+    }
 
+    const handleMouseOut = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      const isInteractive = target.closest('a, button, [role="button"], input, textarea, .cursor-pointer')
+      if (isInteractive) {
+        setIsHovering(false)
+      }
+    }
+
+    document.addEventListener('mouseover', handleMouseOver)
+    document.addEventListener('mouseout', handleMouseOut)
     document.addEventListener('mousedown', handleMouseDown)
     document.addEventListener('mouseup', handleMouseUp)
 
     return () => {
-      interactive.forEach((el) => {
-        el.removeEventListener('mouseenter', handleMouseEnter)
-        el.removeEventListener('mouseleave', handleMouseLeave)
-        el.removeEventListener('mousedown', handleMouseDown)
-        el.removeEventListener('mouseup', handleMouseUp)
-      })
+      document.removeEventListener('mouseover', handleMouseOver)
+      document.removeEventListener('mouseout', handleMouseOut)
       document.removeEventListener('mousedown', handleMouseDown)
       document.removeEventListener('mouseup', handleMouseUp)
     }
