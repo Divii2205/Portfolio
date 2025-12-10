@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Send, Mail, Github, Linkedin, ArrowUpRight, Check } from 'lucide-react'
+import { Send, Mail, Github, Linkedin, XCircle, CheckCircle } from 'lucide-react'
 import emailjs from '@emailjs/browser'
 
 export default function Contact() {
@@ -88,8 +88,8 @@ export default function Contact() {
                     </div>
 
                     <p className="text-gray-400 text-lg leading-relaxed max-w-md font-light">
-                        Got a question, proposal, or project in mind? <br />
-                        I'm all ears. Let's turn your vision into reality.
+                        Got something to share or want to collaborate? <br />
+                        Would love to hear from you! Let’s connect!
                     </p>
 
                     <div className="flex flex-col gap-6">
@@ -180,10 +180,10 @@ export default function Contact() {
                                         )}
                                         {status === 'submitting' && 'Sending...'}
                                         {status === 'success' && (
-                                            <>Sent <Check size={16} /></>
+                                            <>Sent <CheckCircle size={16} /></>
                                         )}
                                         {status === 'error' && (
-                                            <span>Failed ❌</span>
+                                            <span className='flex items-center gap-2'>Failed <XCircle size={18} /></span>
                                         )}
                                     </span>
                                 </motion.button>
