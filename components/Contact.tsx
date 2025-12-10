@@ -52,7 +52,7 @@ export default function Contact() {
     ]
 
     return (
-        <section id="contact" className="py-24 px-4 relative flex items-center justify-center min-h-screen overflow-hidden">
+        <section id="contact" className="py-24 px-4 relative flex items-center justify-center overflow-hidden">
             {/* Ambient Background - Deep Space Vibe with Grain */}
             <div className="absolute inset-0 bg-[#030303]">
                 <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>

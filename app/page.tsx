@@ -8,6 +8,7 @@ import Contact from '@/components/Contact'
 import ScrollManager from '@/components/ScrollManager'
 import Cursor from '@/components/Cursor'
 import Navigation from '@/components/Navigation'
+import Footer from '@/components/Footer'
 
 export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -29,6 +30,7 @@ export default function Home() {
       <About />
       <TechStack />
       <Contact />
+      <Footer />
     </main>
   )
 }
