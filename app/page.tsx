@@ -9,6 +9,7 @@ import ScrollManager from '@/components/ScrollManager'
 import Cursor from '@/components/Cursor'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import GradientLine from '@/components/GradientLine'
 
 export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -29,6 +30,7 @@ export default function Home() {
       <Hero />
       <About />
       <TechStack />
+      <GradientLine />
       <Contact />
       <Footer />
     </main>

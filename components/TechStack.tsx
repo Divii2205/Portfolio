@@ -34,7 +34,7 @@ const stackCategories = [
 
 export default function TechStack() {
     return (
-        <section className="py-16 px-4 relative overflow-hidden">
+        <section className="py-24 px-4 relative overflow-hidden">
             <div className="max-w-6xl mx-auto relative z-10">
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {stackCategories.map((category, idx) => (
