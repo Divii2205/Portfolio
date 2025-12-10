@@ -163,9 +163,6 @@ export default function Contact() {
                             </div>
 
                             <div className="pt-4 flex items-center justify-between">
-                                <p className="text-xs text-gray-500 font-light hidden sm:block">
-
-                                </p>
                                 <motion.button
                                     type="submit"
                                     disabled={status !== 'idle'}
@@ -270,7 +267,7 @@ function FormInput({ id, type, label, value, onChange, focusColor, gradientColor
             <label
                 htmlFor={id}
                 className={`absolute left-0 -top-3 text-sm text-gray-500 transition-all cursor-text
-                           peer-placeholder-shown:top-4 peer-placeholder-shown:text-xl peer-placeholder-shown:text-gray-600 
+                           peer-placeholder-shown:top-4 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-600 
                            peer-focus:-top-3 peer-focus:text-sm ${focusColor}`}
             >
                 {label}
