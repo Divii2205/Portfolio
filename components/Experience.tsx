@@ -3,45 +3,7 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Briefcase, Calendar } from "lucide-react";
-
-const experiences = [
-  {
-    id: 1,
-    role: "UI/UX Designer",
-    company: "URX, Shiphouse",
-    period: "2025 (3 months)",
-    description:
-      "Created user-friendly app screens and web pages that were later deployed live, improving the product’s overall UX. Also designed promotional graphics that supported the startup’s marketing and outreach.",
-    skills: ["UI/UX", "Figma", "Graphic Design"],
-  },
-  {
-    id: 2,
-    role: "Junior Under Officer",
-    company: "National Cadet Corps",
-    period: "2022 - 2024",
-    description:
-      "Responsible for leading cadets, maintaining discipline, organising drills, and supporting the execution of unit activities and events.",
-    skills: ["Leadership", "Discipline", "Teamwork"],
-  },
-  {
-    id: 3,
-    role: "Contributor",
-    company: "The New York Academy of Sciences, 1K Girls 1K Futures",
-    period: "2020 - 2024",
-    description:
-      "Built solutions for real-world problems and challenges, received one-on-one mentorship from experienced professionals, participated in skill-building workshops, collaborated with peers worldwide, and gained exposure to STEM research, leadership development, and career readiness.",
-    skills: ["Problem Solving", "Critical Thinking", "Teamwork"],
-  },
-  {
-    id: 4,
-    role: "Teaching Volunteer",
-    company: "Pratham Education Foundation",
-    period: "2019 - 2020",
-    description:
-      "Volunteered to mentor and teach underprivileged children, helping them in their learning journey.",
-    skills: ["Mentorship", "Communication", "Patience", "Confidence"],
-  },
-];
+import { experiences } from "@/data/experiences";
 
 export default function Experience() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -52,7 +14,7 @@ export default function Experience() {
   });
 
   // how far the dot travels vertically along the rail (tweak 750 → 800/900 if needed)
-  const y = useTransform(scrollYProgress, [0, 1], [10, 900]);
+  const y = useTransform(scrollYProgress, [0, 1], [10, 810]);
 
   return (
     <>

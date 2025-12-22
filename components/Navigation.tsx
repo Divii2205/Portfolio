@@ -15,8 +15,8 @@ import {
 const navItems = [
     { name: 'Home', icon: Home, href: '#home' },
     { name: 'About', icon: User, href: '#about' },
-    { name: 'Experience', icon: Briefcase, href: '#experience' },
     { name: 'Projects', icon: FolderGit2, href: '#projects' },
+    { name: 'Experience', icon: Briefcase, href: '#experience' },
     { name: 'Achievements', icon: Trophy, href: '#achievements' },
     { name: 'Contact', icon: Mail, href: '#contact' },
 ]
