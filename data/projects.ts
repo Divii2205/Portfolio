@@ -28,7 +28,7 @@ export const projects: ProjectItem[] = [
     link: 'https://github.com/Divii2205/CoinVert',
     repo: 'https://github.com/Divii2205/CoinVert',
     gradient: 'from-[#c084fc]/70 via-[#a855f7]/70 to-[#7c3aed]/80',
-    image: ['/images/Coinvert/Flash Screen.jpeg', '/images/Coinvert/EUR.jpeg', '/images/Coinvert/USD.jpeg'],
+    image: ['/images/Coinvert/Flash Screen.jpeg', '/images/Coinvert/Working.jpeg'],
   },
   {
     title: 'Deadline Tracker',

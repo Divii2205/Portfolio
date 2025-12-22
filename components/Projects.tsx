@@ -19,28 +19,55 @@ export default function Projects() {
   function ImageSlideshow({
     images,
     alt,
-    interval = 1500,
+    interval = 1000,
+    initialIndex = 0,
+    onIndexChange,
   }: {
     images: string[]
     alt: string
     interval?: number
+    initialIndex?: number
+    onIndexChange?: (i: number) => void
   }) {
-    const [idx, setIdx] = useState(0)
+    const [idx, setIdx] = useState(initialIndex)
+    const imagesRef = useRef<string[]>(images)
+
+    // keep a live ref to the images so the interval doesn't need images in deps
+    useEffect(() => {
+      imagesRef.current = images
+      // clamp index when image list changes
+      setIdx(prev => {
+        const len = images?.length || 1
+        const next = prev % Math.max(len, 1)
+        onIndexChange?.(next)
+        return next
+      })
+    }, [images, onIndexChange])
 
     useEffect(() => {
-      if (!images || images.length <= 1) return
+      if (!imagesRef.current || imagesRef.current.length <= 1) return
       const id = setInterval(() => {
-        setIdx(prev => (prev + 1) % images.length)
+        setIdx(prev => {
+          const len = imagesRef.current?.length || 1
+          const next = (prev + 1) % len
+          onIndexChange?.(next)
+          return next
+        })
       }, interval)
       return () => clearInterval(id)
-    }, [images, interval])
+    }, [interval])
 
-    const src = images[idx]?.replace(/\\/g, '/')
+    const src = imagesRef.current[idx]?.replace(/\\/g, '/')
     const [broken, setBroken] = useState(false)
 
     useEffect(() => {
       setBroken(false)
-    }, [idx, images])
+    }, [src])
+
+    // report index when manually changed (safety)
+    useEffect(() => {
+      onIndexChange?.(idx)
+    }, [idx, onIndexChange])
 
     return (
       <div className="overflow-hidden rounded-xl border border-white/10 bg-black/20">
@@ -101,6 +128,7 @@ export default function Projects() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(false)
+  const slideshowIndexes = useRef<Record<string, number>>({})
 
   const updateScrollState = () => {
     const el = scrollRef.current
@@ -157,40 +185,11 @@ export default function Projects() {
           </p>
         </motion.div>
 
-        {/* Controls */}
-        <div className="flex items-center justify-end gap-3 mb-6">
-          <button
-            onClick={() => scrollByAmount('left')}
-            disabled={!canScrollLeft}
-            className={`p-3 rounded-full border border-white/10 backdrop-blur-md transition
-              ${
-                canScrollLeft
-                  ? 'hover:bg-white/10 text-white'
-                  : 'opacity-40 cursor-not-allowed text-white/50'
-              }`}
-          >
-            <ArrowLeft size={18} />
-          </button>
-
-          <button
-            onClick={() => scrollByAmount('right')}
-            disabled={!canScrollRight}
-            className={`p-3 rounded-full border border-white/10 backdrop-blur-md transition
-              ${
-                canScrollRight
-                  ? 'hover:bg-white/10 text-white'
-                  : 'opacity-40 cursor-not-allowed text-white/50'
-              }`}
-          >
-            <ArrowRight size={18} />
-          </button>
-        </div>
-
         {/* Carousel */}
         <div
           ref={scrollRef}
           onScroll={updateScrollState}
-          className="flex gap-6 items-stretch min-h-0 overflow-x-auto overflow-y-hidden scroll-smooth hide-scrollbar"
+          className="flex gap-6 items-stretch min-h-0 overflow-x-auto overflow-y-hidden scroll-smooth hide-scrollbar mb-5"
         >
           {projects.map((project, idx) => (
             <motion.article
@@ -209,7 +208,12 @@ export default function Projects() {
                 <div className="relative p-5 flex flex-col h-full">
                   <div className="space-y-4">
                     {project.image && project.image.length > 1 ? (
-                      <ImageSlideshow images={project.image} alt={project.title} />
+                      <ImageSlideshow
+                        images={project.image}
+                        alt={project.title}
+                        initialIndex={slideshowIndexes.current[project.title] ?? 0}
+                        onIndexChange={i => (slideshowIndexes.current[project.title] = i)}
+                      />
                     ) : project.image && project.image.length === 1 ? (
                       <SingleImage src={project.image[0]} alt={project.title} />
                     ) : null}
@@ -241,7 +245,8 @@ export default function Projects() {
                           href={makeHref(project.link)}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-sm font-semibold text-white hover:text-[#f5d0fe]"
+                          className="inline-flex items-center gap-2 text-sm font-semibold text-white bg-white/6 hover:bg-white/10 px-3 py-1.5 rounded-xl border border-white/10 backdrop-blur-sm transition focus:outline-none focus:ring-2 focus:ring-white/20"
+                          aria-label={`View ${project.title}`}
                         >
                           View <ArrowUpRight size={16} />
                         </a>
@@ -252,7 +257,8 @@ export default function Projects() {
                           href={makeHref(project.repo)}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-sm font-semibold text-white hover:text-[#f5d0fe]"
+                          className="inline-flex items-center gap-2 text-sm font-semibold text-white bg-transparent hover:bg-white/6 px-3 py-1.5 rounded-xl border border-white/10 backdrop-blur-sm transition focus:outline-none focus:ring-2 focus:ring-white/20"
+                          aria-label={`Code ${project.title}`}
                         >
                           Code <Github size={16} />
                         </a>
@@ -261,7 +267,37 @@ export default function Projects() {
                   </div>
                 </div>
             </motion.article>
+            
           ))}
+          
+        </div>
+        {/* Controls */}
+        <div className="flex items-center justify-center gap-2">
+          <button
+            onClick={() => scrollByAmount('left')}
+            disabled={!canScrollLeft}
+            className={`p-3 rounded-full border border-white/10 backdrop-blur-md transition
+              ${
+                canScrollLeft
+                  ? 'hover:bg-white/10 text-white'
+                  : 'opacity-40 cursor-not-allowed text-white/50'
+              }`}
+          >
+            <ArrowLeft size={18} />
+          </button>
+
+          <button
+            onClick={() => scrollByAmount('right')}
+            disabled={!canScrollRight}
+            className={`p-3 rounded-full border border-white/10 backdrop-blur-md transition
+              ${
+                canScrollRight
+                  ? 'hover:bg-white/10 text-white'
+                  : 'opacity-40 cursor-not-allowed text-white/50'
+              }`}
+          >
+            <ArrowRight size={18} />
+          </button>
         </div>
       </div>
 
