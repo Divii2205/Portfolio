@@ -1,7 +1,14 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import { Download, ArrowRight, Sparkles, Github, Linkedin, Mail } from 'lucide-react'
+import { motion } from "framer-motion";
+import {
+  Download,
+  ArrowRight,
+  Sparkles,
+  Github,
+  Linkedin,
+  Mail,
+} from "lucide-react";
 
 const container = {
   hidden: { opacity: 0 },
@@ -9,12 +16,16 @@ const container = {
     opacity: 1,
     transition: { staggerChildren: 0.15, delayChildren: 0.2 },
   },
-}
+};
 
 const item = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.8, 0.25, 1] } },
-}
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.25, 0.8, 0.25, 1] },
+  },
+};
 
 export default function Hero() {
   return (
@@ -31,9 +42,14 @@ export default function Hero() {
         >
           {/* Left content */}
           <div className="space-y-8">
-            <motion.div variants={item} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm">
+            <motion.div
+              variants={item}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm"
+            >
               <Sparkles size={16} className="text-purple-200" />
-              <span className="tracking-wide">Creative Designer and Developer</span>
+              <span className="tracking-wide">
+                Creative Designer and Developer
+              </span>
             </motion.div>
 
             <motion.h1
@@ -41,14 +57,16 @@ export default function Hero() {
               className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight"
             >
               <span className="block">Hii</span>
-              <span className="block text-gradient mt-1">I'm Divijaa Arjun</span>
+              <span className="block text-gradient mt-1">
+                I'm Divijaa Arjun
+              </span>
             </motion.h1>
 
             <motion.div variants={item} className="space-y-1">
               <p className="text-base sm:text-lg text-gray-200 max-w-2xl leading-relaxed">
                 Passionate UI/UX designer and developer who builds with purpose.
-                I am driven to create experiences that make an impact.
-                A keen explorer, lifelong learner, and open collaborator.
+                I am driven to create experiences that make an impact. A keen
+                explorer, lifelong learner, and open collaborator.
               </p>
             </motion.div>
 
@@ -61,7 +79,9 @@ export default function Hero() {
                 <ArrowRight size={18} />
               </a>
               <a
-                href="/resume.pdf"
+                href="https://drive.google.com/file/d/1xaXA91DJRvQV5pcfCVJ-QFSYnRvhodHy/view?usp=drive_link"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-3 rounded-full border border-white/20 bg-white/10 font-semibold hover:bg-white/15 transition-transform hover:-translate-y-0.5"
               >
                 Download Resume
@@ -69,11 +89,20 @@ export default function Hero() {
               </a>
             </motion.div>
 
-            <motion.div variants={item} className="flex items-center gap-3 pt-2">
+            <motion.div
+              variants={item}
+              className="flex items-center gap-3 pt-2"
+            >
               {[
-                { Icon: Linkedin, href: 'https://www.linkedin.com/in/divijaa-arjun' },
-                { Icon: Mail, href: 'https://mail.google.com/mail/?view=cm&to=divijaa22am@gmail.com' },
-                { Icon: Github, href: 'https://github.com/Divii2205' },
+                {
+                  Icon: Linkedin,
+                  href: "https://www.linkedin.com/in/divijaa-arjun",
+                },
+                {
+                  Icon: Mail,
+                  href: "https://mail.google.com/mail/?view=cm&to=divijaa22am@gmail.com",
+                },
+                { Icon: Github, href: "https://github.com/Divii2205" },
               ].map(({ Icon, href }, idx) => (
                 <a
                   key={idx}
@@ -89,12 +118,12 @@ export default function Hero() {
           </div>
 
           {/* Right visual */}
-          <motion.div variants={item} className="relative flex justify-center">
-
-          </motion.div>
+          <motion.div
+            variants={item}
+            className="relative flex justify-center"
+          ></motion.div>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
-

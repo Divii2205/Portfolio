@@ -5,6 +5,7 @@ import Hero from '@/components/Hero'
 import About from '@/components/About'
 import TechStack from '@/components/TechStack'
 import Experience from '@/components/Experience'
+import Achievements from '@/components/Achievements'
 import Contact from '@/components/Contact'
 import ScrollManager from '@/components/ScrollManager'
 import Cursor from '@/components/Cursor'
@@ -34,6 +35,7 @@ export default function Home() {
       <TechStack />
       <GradientLine />
       <Projects />
+      {/* <Achievements /> */}
       <GradientLine />
       <Experience />
       <GradientLine />

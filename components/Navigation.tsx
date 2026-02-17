@@ -17,7 +17,7 @@ const navItems = [
     { name: 'About', icon: User, href: '#about' },
     { name: 'Projects', icon: FolderGit2, href: '#projects' },
     { name: 'Experience', icon: Briefcase, href: '#experience' },
-    { name: 'Achievements', icon: Trophy, href: '#achievements' },
+    // { name: 'Achievements', icon: Trophy, href: '#achievements' },
     { name: 'Contact', icon: Mail, href: '#contact' },
 ]
 

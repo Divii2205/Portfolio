@@ -11,38 +11,33 @@ import {
 
 const stackCategories = [
     {
-        title: 'Languages',
+        title: 'Languages & Frameworks',
         icon: Code2,
-        skills: ['Python', 'Java', 'JavaScript']
+        skills: ['Java', 'Python', 'SQL', 'JavaScript', 'React', 'React Native', 'Tailwind CSS']
     },
     {
-        title: 'Frameworks',
+        title: 'Backend & APIs',
         icon: Cpu,
-        skills: ['Spring Boot', 'React', 'Node.js', 'Express.js']
+        skills: ['Node.js', 'Express.js', 'SpringBoot', 'REST APIs', 'JWT']
     },
     {
-        title: 'Databases',
-        icon: Database,
-        skills: ['MySQL', 'MongoDB']
-    },
-    {
-        title: 'Tools & Design',
+        title: 'Developer Tools & Databases',
         icon: Wrench,
-        skills: ['Git', 'Figma', 'Scratch']
-    }
+        skills: ['Git', 'VS Code', 'IntelliJ', 'Figma', 'Scratch', 'Postman', 'Expo', 'MySQL', 'MongoDB']
+    },
 ]
 
 export default function TechStack() {
     return (
         <section className="py-24 px-4 relative overflow-hidden">
             <div className="max-w-6xl mx-auto relative z-10">
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {stackCategories.map((category, idx) => (
                         <motion.div
                             key={idx}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: false, amount: 0.3 }}
                             transition={{ delay: idx * 0.1 }}
                             className="glass-effect p-6 rounded-2xl border border-white/5 hover:border-purple-500/30 transition-colors group"
                         >

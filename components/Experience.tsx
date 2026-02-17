@@ -13,8 +13,8 @@ export default function Experience() {
     offset: ["start center", "end center"],
   });
 
-  // how far the dot travels vertically along the rail (tweak 750 → 800/900 if needed)
-  const y = useTransform(scrollYProgress, [0, 1], [10, 810]);
+  // Dot position along the rail, tied to the container height (no hardcoded pixels)
+  const dotTop = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
     <>
@@ -30,7 +30,7 @@ export default function Experience() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="text-center mb-20"
           >
             <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tighter leading-[0.9] mb-2">
@@ -59,8 +59,8 @@ export default function Experience() {
 
                 {/* moving dot */}
                 <motion.div
-                  style={{ y, x: "-50%", left: "50%" }}
-                  className="absolute top-0 w-4 h-4 z-10 rounded-full bg-gray-900 border-[3px] border-rose-300
+                  style={{ top: dotTop, x: "-50%", left: "50%" }}
+                  className="absolute w-4 h-4 z-10 rounded-full bg-gray-900 border-[3px] border-rose-300
                              shadow-[0_0_15px_rgba(168,85,247,1)]"
                 />
               </div>
@@ -80,8 +80,8 @@ export default function Experience() {
 
                 {/* moving dot (mobile) */}
                 <motion.div
-                  style={{ y }}
-                  className="absolute top-0 left-1/2 -translate-x-1/2
+                  style={{ top: dotTop }}
+                  className="absolute left-1/2 -translate-x-1/2
                              w-5 h-5 rounded-full bg-gray-900 border-[4px] border-rose-300
                              shadow-[0_0_15px_rgba(168,85,247,1)]"
                 />
@@ -108,7 +108,7 @@ export default function Experience() {
                   <motion.div
                     initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-10%" }}
+                    viewport={{ once: false, amount: 0.3 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className="flex-1 pl-12 md:pl-0"
                   >

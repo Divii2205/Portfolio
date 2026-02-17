@@ -1,10 +1,10 @@
-'use client'
+"use client";
 
-import { useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import { ArrowLeft, ArrowRight, ArrowUpRight, Github } from 'lucide-react'
-import { projects } from '@/data/projects'
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Github } from "lucide-react";
+import { projects } from "@/data/projects";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -13,7 +13,7 @@ const fadeUp = {
     y: 0,
     transition: { duration: 0.6, ease: [0.25, 0.8, 0.25, 1] },
   },
-}
+};
 
 export default function Projects() {
   function ImageSlideshow({
@@ -23,51 +23,51 @@ export default function Projects() {
     initialIndex = 0,
     onIndexChange,
   }: {
-    images: string[]
-    alt: string
-    interval?: number
-    initialIndex?: number
-    onIndexChange?: (i: number) => void
+    images: string[];
+    alt: string;
+    interval?: number;
+    initialIndex?: number;
+    onIndexChange?: (i: number) => void;
   }) {
-    const [idx, setIdx] = useState(initialIndex)
-    const imagesRef = useRef<string[]>(images)
+    const [idx, setIdx] = useState(initialIndex);
+    const imagesRef = useRef<string[]>(images);
 
     // keep a live ref to the images so the interval doesn't need images in deps
     useEffect(() => {
-      imagesRef.current = images
+      imagesRef.current = images;
       // clamp index when image list changes
-      setIdx(prev => {
-        const len = images?.length || 1
-        const next = prev % Math.max(len, 1)
-        onIndexChange?.(next)
-        return next
-      })
-    }, [images, onIndexChange])
+      setIdx((prev) => {
+        const len = images?.length || 1;
+        const next = prev % Math.max(len, 1);
+        onIndexChange?.(next);
+        return next;
+      });
+    }, [images, onIndexChange]);
 
     useEffect(() => {
-      if (!imagesRef.current || imagesRef.current.length <= 1) return
+      if (!imagesRef.current || imagesRef.current.length <= 1) return;
       const id = setInterval(() => {
-        setIdx(prev => {
-          const len = imagesRef.current?.length || 1
-          const next = (prev + 1) % len
-          onIndexChange?.(next)
-          return next
-        })
-      }, interval)
-      return () => clearInterval(id)
-    }, [interval])
+        setIdx((prev) => {
+          const len = imagesRef.current?.length || 1;
+          const next = (prev + 1) % len;
+          onIndexChange?.(next);
+          return next;
+        });
+      }, interval);
+      return () => clearInterval(id);
+    }, [interval]);
 
-    const src = imagesRef.current[idx]?.replace(/\\/g, '/')
-    const [broken, setBroken] = useState(false)
+    const src = imagesRef.current[idx]?.replace(/\\/g, "/");
+    const [broken, setBroken] = useState(false);
 
     useEffect(() => {
-      setBroken(false)
-    }, [src])
+      setBroken(false);
+    }, [src]);
 
     // report index when manually changed (safety)
     useEffect(() => {
-      onIndexChange?.(idx)
-    }, [idx, onIndexChange])
+      onIndexChange?.(idx);
+    }, [idx, onIndexChange]);
 
     return (
       <div className="overflow-hidden rounded-xl border border-white/10 bg-black/20">
@@ -88,16 +88,16 @@ export default function Projects() {
           )}
         </div>
       </div>
-    )
+    );
   }
 
   function SingleImage({ src, alt }: { src: string; alt: string }) {
-    const normalized = src?.replace(/\\/g, '/')
-    const [broken, setBroken] = useState(false)
+    const normalized = src?.replace(/\\/g, "/");
+    const [broken, setBroken] = useState(false);
 
     useEffect(() => {
-      setBroken(false)
-    }, [normalized])
+      setBroken(false);
+    }, [normalized]);
 
     return (
       <div className="overflow-hidden rounded-xl border border-white/10 bg-black/20">
@@ -118,45 +118,45 @@ export default function Projects() {
           )}
         </div>
       </div>
-    )
+    );
   }
 
   const makeHref = (url?: string) => {
-    if (!url) return undefined
-    return /^(https?:\/\/)/i.test(url) ? url : `https://${url}`
-  }
-  const scrollRef = useRef<HTMLDivElement>(null)
-  const [canScrollLeft, setCanScrollLeft] = useState(false)
-  const [canScrollRight, setCanScrollRight] = useState(false)
-  const slideshowIndexes = useRef<Record<string, number>>({})
+    if (!url) return undefined;
+    return /^(https?:\/\/)/i.test(url) ? url : `https://${url}`;
+  };
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+  const slideshowIndexes = useRef<Record<string, number>>({});
 
   const updateScrollState = () => {
-    const el = scrollRef.current
-    if (!el) return
+    const el = scrollRef.current;
+    if (!el) return;
 
-    setCanScrollLeft(el.scrollLeft > 0)
-    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 1)
-  }
+    setCanScrollLeft(el.scrollLeft > 0);
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 1);
+  };
 
   useEffect(() => {
-    updateScrollState()
-    window.addEventListener('resize', updateScrollState)
-    return () => window.removeEventListener('resize', updateScrollState)
-  }, [])
+    updateScrollState();
+    window.addEventListener("resize", updateScrollState);
+    return () => window.removeEventListener("resize", updateScrollState);
+  }, []);
 
-  const scrollByAmount = (direction: 'left' | 'right') => {
-    const el = scrollRef.current
-    if (!el) return
+  const scrollByAmount = (direction: "left" | "right") => {
+    const el = scrollRef.current;
+    if (!el) return;
 
-    const card = el.querySelector<HTMLElement>('[data-card]')
-    if (!card) return
+    const card = el.querySelector<HTMLElement>("[data-card]");
+    if (!card) return;
 
-    const scrollAmount = card.offsetWidth + 24
+    const scrollAmount = card.offsetWidth + 24;
     el.scrollBy({
-      left: direction === 'left' ? -scrollAmount : scrollAmount,
-      behavior: 'smooth',
-    })
-  }
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <section
@@ -171,7 +171,7 @@ export default function Projects() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.3 }}
           className="text-center mb-14"
         >
           <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tighter leading-[0.9] mb-3">
@@ -185,119 +185,149 @@ export default function Projects() {
           </p>
         </motion.div>
 
-        {/* Carousel */}
-        <div
-          ref={scrollRef}
-          onScroll={updateScrollState}
-          className="flex gap-6 items-stretch min-h-0 overflow-x-auto overflow-y-hidden scroll-smooth hide-scrollbar mb-5"
-        >
-          {projects.map((project, idx) => (
-            <motion.article
-              key={project.title}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              data-card
-                className="min-w-[260px] md:min-w-[320px] lg:min-w-[360px] flex flex-col
-                  h-[460px] md:h-[520px] lg:h-[560px] relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm
-                  hover:bg-white/10 transition cursor-pointer"
+        {/* Carousel + Controls */}
+        <div className="relative">
+          <div
+            ref={scrollRef}
+            onScroll={updateScrollState}
+            className="flex gap-6 items-stretch min-h-0 overflow-x-auto overflow-y-hidden scroll-smooth hide-scrollbar mb-5"
+          >
+            {projects.map((project, idx) => {
+              const cardHref = makeHref(project.repo || project.link);
+              return (
+                <motion.article
+                  key={project.title}
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.3 }}
+                  data-card
+                  className="min-w-[260px] md:min-w-[320px] lg:min-w-[360px] flex flex-col
+                    h-[460px] md:h-[520px] lg:h-[560px] relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm
+                    hover:bg-white/10 transition cursor-pointer"
+                  onClick={() => {
+                    if (cardHref) {
+                      window.open(cardHref, "_blank", "noopener,noreferrer");
+                    }
+                  }}
+                  role={cardHref ? "link" : undefined}
+                  tabIndex={cardHref ? 0 : -1}
+                  aria-label={
+                    cardHref ? `Open GitHub for ${project.title}` : undefined
+                  }
+                  onKeyDown={(e) => {
+                    if (!cardHref) return;
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      window.open(cardHref, "_blank", "noopener,noreferrer");
+                    }
+                  }}
+                >
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-20`}
+                  />
+
+                  <div className="relative p-5 flex flex-col h-full">
+                    <div className="space-y-4">
+                      {project.image && project.image.length > 1 ? (
+                        <ImageSlideshow
+                          images={project.image}
+                          alt={project.title}
+                          initialIndex={
+                            slideshowIndexes.current[project.title] ?? 0
+                          }
+                          onIndexChange={(i) =>
+                            (slideshowIndexes.current[project.title] = i)
+                          }
+                        />
+                      ) : project.image && project.image.length === 1 ? (
+                        <SingleImage
+                          src={project.image[0]}
+                          alt={project.title}
+                        />
+                      ) : null}
+
+                      <h3 className="text-xl font-semibold text-white">
+                        {project.title}
+                      </h3>
+
+                      <p className="text-sm text-gray-300 leading-relaxed max-h-28 overflow-hidden">
+                        {project.description}
+                      </p>
+                    </div>
+
+                    <div className="mt-auto pt-3">
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {project.tech.map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-xs px-2.5 py-1 rounded-full bg-white/10 text-gray-200"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="flex items-center gap-4">
+                        {makeHref(project.link) && (
+                          <a
+                            href={makeHref(project.link)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-sm font-semibold text-white bg-white/6 hover:bg-white/10 px-3 py-1.5 rounded-xl border border-white/10 backdrop-blur-sm transition focus:outline-none focus:ring-2 focus:ring-white/20"
+                            aria-label={`View ${project.title}`}
+                          >
+                            View <ArrowUpRight size={16} />
+                          </a>
+                        )}
+
+                        {makeHref(project.repo) && (
+                          <a
+                            href={makeHref(project.repo)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-sm font-semibold text-white bg-transparent hover:bg-white/6 px-3 py-1.5 rounded-xl border border-white/10 backdrop-blur-sm transition focus:outline-none focus:ring-2 focus:ring-white/20"
+                            aria-label={`Code ${project.title}`}
+                          >
+                            Code <Github size={16} />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </div>
+
+          {/* Side Controls */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 right-0 flex items-center justify-between">
+            <button
+              onClick={() => scrollByAmount("left")}
+              disabled={!canScrollLeft}
+              className={`pointer-events-auto hidden md:flex items-center justify-center p-3 rounded-full bg-white/10 text-white border border-white/10 backdrop-blur-md bg-black/40 transition
+                ${
+                  canScrollLeft
+                    ? "hover:bg-white/10 text-white"
+                    : "opacity-40 cursor-not-allowed text-white/50"
+                }`}
             >
-                <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-20`} />
+              <ArrowLeft size={18} />
+            </button>
 
-                <div className="relative p-5 flex flex-col h-full">
-                  <div className="space-y-4">
-                    {project.image && project.image.length > 1 ? (
-                      <ImageSlideshow
-                        images={project.image}
-                        alt={project.title}
-                        initialIndex={slideshowIndexes.current[project.title] ?? 0}
-                        onIndexChange={i => (slideshowIndexes.current[project.title] = i)}
-                      />
-                    ) : project.image && project.image.length === 1 ? (
-                      <SingleImage src={project.image[0]} alt={project.title} />
-                    ) : null}
-
-                    <h3 className="text-xl font-semibold text-white">
-                      {project.title}
-                    </h3>
-
-                    <p className="text-sm text-gray-300 leading-relaxed max-h-28 overflow-hidden">
-                      {project.description}
-                    </p>
-                  </div>
-
-                  <div className="mt-auto pt-3">
-                    <div className="flex flex-wrap gap-2 mb-3">
-                      {project.tech.map(tag => (
-                        <span
-                          key={tag}
-                          className="text-xs px-2.5 py-1 rounded-full bg-white/10 text-gray-200"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className="flex items-center gap-4">
-                      {makeHref(project.link) && (
-                        <a
-                          href={makeHref(project.link)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-sm font-semibold text-white bg-white/6 hover:bg-white/10 px-3 py-1.5 rounded-xl border border-white/10 backdrop-blur-sm transition focus:outline-none focus:ring-2 focus:ring-white/20"
-                          aria-label={`View ${project.title}`}
-                        >
-                          View <ArrowUpRight size={16} />
-                        </a>
-                      )}
-
-                      {makeHref(project.repo) && (
-                        <a
-                          href={makeHref(project.repo)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-sm font-semibold text-white bg-transparent hover:bg-white/6 px-3 py-1.5 rounded-xl border border-white/10 backdrop-blur-sm transition focus:outline-none focus:ring-2 focus:ring-white/20"
-                          aria-label={`Code ${project.title}`}
-                        >
-                          Code <Github size={16} />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </div>
-            </motion.article>
-            
-          ))}
-          
-        </div>
-        {/* Controls */}
-        <div className="flex items-center justify-center gap-2">
-          <button
-            onClick={() => scrollByAmount('left')}
-            disabled={!canScrollLeft}
-            className={`p-3 rounded-full border border-white/10 backdrop-blur-md transition
-              ${
-                canScrollLeft
-                  ? 'hover:bg-white/10 text-white'
-                  : 'opacity-40 cursor-not-allowed text-white/50'
-              }`}
-          >
-            <ArrowLeft size={18} />
-          </button>
-
-          <button
-            onClick={() => scrollByAmount('right')}
-            disabled={!canScrollRight}
-            className={`p-3 rounded-full border border-white/10 backdrop-blur-md transition
-              ${
-                canScrollRight
-                  ? 'hover:bg-white/10 text-white'
-                  : 'opacity-40 cursor-not-allowed text-white/50'
-              }`}
-          >
-            <ArrowRight size={18} />
-          </button>
+            <button
+              onClick={() => scrollByAmount("right")}
+              disabled={!canScrollRight}
+              className={`pointer-events-auto hidden md:flex items-center justify-center p-3 rounded-full bg-white/10 text-white border border-white/10 backdrop-blur-md bg-black/40 transition
+                ${
+                  canScrollRight
+                    ? "hover:bg-white/10 text-white"
+                    : "opacity-40 cursor-not-allowed text-white/50"
+                }`}
+            >
+              <ArrowRight size={18} />
+            </button>
+          </div>
         </div>
       </div>
 
@@ -307,9 +337,15 @@ export default function Projects() {
           animation: gradient-shift 5s ease infinite;
         }
         @keyframes gradient-shift {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
         }
         /* hide horizontal scrollbar while allowing scroll */
         .hide-scrollbar {
@@ -321,5 +357,5 @@ export default function Projects() {
         }
       `}</style>
     </section>
-  )
+  );
 }
