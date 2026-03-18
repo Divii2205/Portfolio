@@ -20,7 +20,7 @@ export default function Experience() {
     <>
       <section
         id="experience"
-        className="py-20 px-4 relative overflow-hidden bg-black"
+        className="py-20 px-4 relative bg-black"
       >
         {/* Background Atmosphere */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(124,58,237,0.05),_transparent_70%)]" />
@@ -31,7 +31,7 @@ export default function Experience() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
-            className="text-center mb-20"
+            className="sticky top-0 z-40 text-center bg-black/80 backdrop-blur-md pt-6 pb-20 -mx-16 px-4"
           >
             <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tighter leading-[0.9] mb-2">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f0abfc] via-[#fda4af] to-[#f0abfc] background-animate">
