@@ -16,10 +16,10 @@ export default function Cursor({ mousePosition }: CursorProps) {
   const outlineX = useMotionValue(-100)
   const outlineY = useMotionValue(-100)
 
-  const dotXSmooth = useSpring(dotX, { stiffness: 900, damping: 40, mass: 0.3 })
-  const dotYSmooth = useSpring(dotY, { stiffness: 900, damping: 40, mass: 0.3 })
-  const outlineXSmooth = useSpring(outlineX, { stiffness: 900, damping: 40, mass: 0.3 })
-  const outlineYSmooth = useSpring(outlineY, { stiffness: 900, damping: 40, mass: 0.3 })
+  const dotXSmooth = useSpring(dotX, { stiffness: 3000, damping: 10, mass: 0.1 })
+  const dotYSmooth = useSpring(dotY, { stiffness: 3000, damping: 10, mass: 0.1 })
+  const outlineXSmooth = useSpring(outlineX, { stiffness: 3000, damping: 10, mass: 0.1 })
+  const outlineYSmooth = useSpring(outlineY, { stiffness: 3000, damping: 10, mass: 0.1 })
 
   useEffect(() => {
     dotX.set(mousePosition.x - 6)
