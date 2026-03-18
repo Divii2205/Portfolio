@@ -43,11 +43,9 @@ export default function Hero() {
         >
           {/* Left content */}
           <div className="space-y-8">
-
             <motion.h1
               variants={item}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight"
-              
             >
               <span className="block">Hii</span>
               <span className="block text-gradient mt-1">
@@ -55,7 +53,6 @@ export default function Hero() {
               </span>
             </motion.h1>
 
-            
             {/* <motion.div
               variants={item}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm"
@@ -68,9 +65,9 @@ export default function Hero() {
 
             <motion.div variants={item} className="space-y-1">
               <p className="text-base sm:text-lg text-gray-200 max-w-2xl leading-relaxed">
-                Passionate UI/UX designer and developer who builds with purpose.
-                I am driven to create experiences that make an impact. A keen
-                explorer, lifelong learner, and open collaborator.
+                Designer and developer focused on building purposeful digital
+                experiences. I work across UI/UX, frontend, and app development
+                to turn ideas into intuitive and functional products.
               </p>
             </motion.div>
 
@@ -122,10 +119,7 @@ export default function Hero() {
           </div>
 
           {/* Right visual – 3D avatar canvas */}
-          <motion.div
-            variants={item}
-            className="relative flex justify-center"
-          >
+          <motion.div variants={item} className="relative flex justify-center">
             {/* <HeroAvatar3D /> */}
           </motion.div>
         </motion.div>
