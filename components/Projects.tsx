@@ -15,6 +15,12 @@ const fadeUp = {
   },
 };
 
+// Gradient colors for indicator dots
+const indicatorGradient = [
+  "from-[#f0abfc] to-[#fda4af]",
+  "from-[#fda4af] to-[#f0abfc]"
+];
+
 export default function Projects() {
   function ImageSlideshow({
     images,
@@ -128,7 +134,38 @@ export default function Projects() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
+  // active project index for carousel indicators
+  const [activeIndex, setActiveIndex] = useState(0);
+
   const slideshowIndexes = useRef<Record<string, number>>({});
+
+  const updateActiveIndex = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const cards = Array.from(el.querySelectorAll<HTMLElement>("[data-card]"));
+    if (cards.length === 0) return;
+
+    let closest = 0;
+    let minDiff = Number.POSITIVE_INFINITY;
+    cards.forEach((c, i) => {
+      const diff = Math.abs(c.offsetLeft - el.scrollLeft);
+      if (diff < minDiff) {
+        minDiff = diff;
+        closest = i;
+      }
+      
+    });
+    setActiveIndex(closest);
+  };
+
+  const scrollToIndex = (i: number) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const cards = el.querySelectorAll<HTMLElement>("[data-card]");
+    if (cards[i]) {
+      el.scrollTo({ left: cards[i].offsetLeft, behavior: "smooth" });
+    }
+  };
 
   const updateScrollState = () => {
     const el = scrollRef.current;
@@ -136,10 +173,12 @@ export default function Projects() {
 
     setCanScrollLeft(el.scrollLeft > 0);
     setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 1);
+    updateActiveIndex();
   };
 
   useEffect(() => {
     updateScrollState();
+    // ensure indicator stays accurate on resize
     window.addEventListener("resize", updateScrollState);
     return () => window.removeEventListener("resize", updateScrollState);
   }, []);
@@ -189,7 +228,10 @@ export default function Projects() {
         <div className="relative">
           <div
             ref={scrollRef}
-            onScroll={updateScrollState}
+            onScroll={() => {
+              updateScrollState();
+              updateActiveIndex();
+            }}
             className="flex gap-6 items-stretch min-h-0 overflow-x-auto overflow-y-hidden scroll-smooth hide-scrollbar mb-5"
           >
             {projects.map((project, idx) => {
@@ -300,7 +342,27 @@ export default function Projects() {
             })}
           </div>
 
+          {/* Indicators */}
+          <div className="flex justify-center gap-2 mt-4">
+            {projects.slice(0, projects.length - 2).map((_, i) => {
+              const colorGradient = indicatorGradient[i % indicatorGradient.length];
+              return (
+                <button
+                  key={i}
+                  className={`w-3 h-3 rounded-full transition ${
+                    activeIndex === i
+                      ? `bg-gradient-to-r ${colorGradient}`
+                      : "bg-white/30"
+                  }`}
+                  onClick={() => scrollToIndex(i)}
+                  aria-label={`Go to project ${i + 1}`}
+                />
+              );
+            })}
+          </div>
+
           {/* Side Controls */}
+          {/*
           <div className="pointer-events-none absolute inset-y-0 left-0 right-0 flex items-center justify-between">
             <button
               onClick={() => scrollByAmount("left")}
@@ -328,6 +390,7 @@ export default function Projects() {
               <ArrowRight size={18} />
             </button>
           </div>
+          */}
         </div>
       </div>
 

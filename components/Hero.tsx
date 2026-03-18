@@ -9,6 +9,7 @@ import {
   Linkedin,
   Mail,
 } from "lucide-react";
+import HeroAvatar3D from "@/components/HeroAvatar3D";
 
 const container = {
   hidden: { opacity: 0 },
@@ -42,7 +43,20 @@ export default function Hero() {
         >
           {/* Left content */}
           <div className="space-y-8">
-            <motion.div
+
+            <motion.h1
+              variants={item}
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight"
+              
+            >
+              <span className="block">Hii</span>
+              <span className="block text-gradient mt-1">
+                I'm Divijaa Arjun
+              </span>
+            </motion.h1>
+
+            
+            {/* <motion.div
               variants={item}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm"
             >
@@ -50,17 +64,7 @@ export default function Hero() {
               <span className="tracking-wide">
                 Creative Designer and Developer
               </span>
-            </motion.div>
-
-            <motion.h1
-              variants={item}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight"
-            >
-              <span className="block">Hii</span>
-              <span className="block text-gradient mt-1">
-                I'm Divijaa Arjun
-              </span>
-            </motion.h1>
+            </motion.div> */}
 
             <motion.div variants={item} className="space-y-1">
               <p className="text-base sm:text-lg text-gray-200 max-w-2xl leading-relaxed">
@@ -117,11 +121,13 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Right visual */}
+          {/* Right visual – 3D avatar canvas */}
           <motion.div
             variants={item}
             className="relative flex justify-center"
-          ></motion.div>
+          >
+            {/* <HeroAvatar3D /> */}
+          </motion.div>
         </motion.div>
       </div>
     </section>

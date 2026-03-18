@@ -160,7 +160,7 @@ export default function About() {
             onMouseLeave={handleMouseLeave}
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="relative mx-auto w-full max-w-[460px] h-[460px] rounded-full"
           >
             {nodes.map(node => (
@@ -193,10 +193,10 @@ export default function About() {
 
           {/* RIGHT: text */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ delay: 0.2, duration: 0.8 }}
             className="space-y-8 text-lg text-gray-300 leading-relaxed relative"
           >
             <div className="absolute -left-8 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-purple-500/50 to-transparent hidden lg:block" />
