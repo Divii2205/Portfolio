@@ -16,10 +16,7 @@ const fadeUp = {
 };
 
 // Gradient colors for indicator dots
-const indicatorGradient = [
-  "from-[#f0abfc] to-[#fda4af]",
-  "from-[#fda4af] to-[#f0abfc]"
-];
+const indicatorGradient = ["from-[#f0abfc] to-[#fda4af]", "from-[#fda4af] to-[#f0abfc]"];
 
 export default function Projects() {
   function ImageSlideshow({
@@ -153,7 +150,6 @@ export default function Projects() {
         minDiff = diff;
         closest = i;
       }
-      
     });
     setActiveIndex(closest);
   };

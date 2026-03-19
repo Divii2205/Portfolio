@@ -118,10 +118,76 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Right visual – 3D avatar canvas */}
-          <motion.div variants={item} className="relative flex justify-center">
-            {/* <HeroAvatar3D /> */}
-          </motion.div>
+          {/* Right visual – Video */}
+          <div className="relative w-full h-full flex justify-center pt-0 group">
+            {/* TWEAKABLE PARAMETERS - Modify these to change the frame look */}
+            <div
+              className="relative rounded-3xl overflow-hidden transition-transform duration-500 group-hover:scale-105"
+              style={{
+                width: "100%",
+                maxWidth: "500px",
+                aspectRatio: "1 / 1",
+                maxHeight: "325px",
+              }}
+            >
+              {/* OUTER GLOW LAYER 2 - Secondary glow for depth */}
+              <div className="absolute -inset-0 bg-gradient-to-r from-purple-600/30 via-pink-100/30 to-purple-600/30 rounded-3xl blur-2xl -z-20" />
+
+              {/* INNER GRADIENT BORDER */}
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/40 via-pink-200/40 to-purple-500/40 rounded-3xl p-[2px] -z-10">
+                {/* VIDEO CONTAINER */}
+                <div
+                  className="relative w-full h-full rounded-3xl overflow-hidden bg-black/60 shadow-2xl group-hover:shadow-purple-900/50 transition-shadow duration-500"
+                  style={{
+                    boxShadow:
+                      "0 25px 50px -12px rgba(168, 85, 247, 0.15), 0 0 40px rgba(236, 72, 153, 0.1)",
+                  }}
+                >
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="w-full h-full object-contain"
+                    style={{
+                      objectFit: "contain",
+                      backgroundColor: "#000000",
+                    }}
+                  >
+                    <source
+                      src="/videos/Video Project 1.mp4"
+                      type="video/mp4"
+                    />
+                    <img
+                      src="/videos/Video Project 1.gif"
+                      alt="Hero video"
+                      className="w-full h-full object-contain"
+                    />
+                  </video>
+
+                  {/* GRADIENT OVERLAY */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none" />
+                </div>
+              </div>
+            </div>
+
+            <style jsx>{`
+              @keyframes float-glow {
+                0%,
+                100% {
+                  opacity: 0.5;
+                  filter: blur(8px);
+                }
+                50% {
+                  opacity: 0.8;
+                  filter: blur(12px);
+                }
+              }
+              :global(.animate-glow-pulse) {
+                animation: float-glow 3s ease-in-out infinite;
+              }
+            `}</style>
+          </div>
         </motion.div>
       </div>
     </section>
