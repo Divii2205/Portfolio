@@ -4,12 +4,10 @@ import { motion } from "framer-motion";
 import {
   Download,
   ArrowRight,
-  Sparkles,
   Github,
   Linkedin,
   Mail,
 } from "lucide-react";
-import HeroAvatar3D from "@/components/HeroAvatar3D";
 
 const container = {
   hidden: { opacity: 0 },
