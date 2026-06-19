@@ -16,7 +16,7 @@ export const projects: ProjectItem[] = [
     description:
       "Worked with 3+ startups on website and app UI/UX design. URX: A platform that sells keyboards and gaming assets. Shiphouse: A logistics management platform. College Dashboard: All in one platform.",
     tech: ["Figma", "Research"],
-    link: "",
+    link: "https://www.figma.com/design/enq1syc0YcY5fLzJ22t4YU/Design-Portfolio?node-id=0-1&t=zixFGUNS8qF05bvP-1",
     repo: "",
     gradient: "from-[#f0abfc]/70 via-[#f472b6]/70 to-[#db2777]/80",
     image: ["/images/Projects.png"],
