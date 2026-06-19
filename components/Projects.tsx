@@ -196,20 +196,22 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="py-20 px-4 relative overflow-hidden bg-black"
+      className="py-20 px-4 relative overflow-hidden"
     >
-      {/* Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(124,58,237,0.05),_transparent_70%)]" />
-
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
-          className="text-center mb-14"
+          className="text-center mb-14 space-y-3"
         >
-          <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tighter leading-[0.9] mb-3">
+          <span className="eyebrow justify-center">
+            <span className="h-px w-8 bg-gradient-to-r from-transparent to-[#c084fc]" />
+            Selected work
+            <span className="h-px w-8 bg-gradient-to-l from-transparent to-[#c084fc]" />
+          </span>
+          <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tighter leading-[0.9]">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f0abfc] via-[#fda4af] to-[#f0abfc] background-animate">
               Projects
             </span>
@@ -241,8 +243,9 @@ export default function Projects() {
                   viewport={{ once: false, amount: 0.3 }}
                   data-card
                   className="min-w-[260px] md:min-w-[320px] lg:min-w-[360px] flex flex-col
-                    h-[460px] md:h-[520px] lg:h-[560px] relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm
-                    hover:bg-white/10 transition cursor-pointer"
+                    h-[460px] md:h-[520px] lg:h-[560px] relative rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm
+                    hover:bg-white/[0.07] hover:border-white/20 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_-20px_rgba(192,132,252,0.45)]
+                    transition-all duration-300 cursor-pointer overflow-hidden"
                   onClick={() => {
                     if (cardHref) {
                       window.open(cardHref, "_blank", "noopener,noreferrer");
@@ -285,9 +288,16 @@ export default function Projects() {
                         />
                       ) : null}
 
-                      <h3 className="text-xl font-semibold text-white">
-                        {project.title}
-                      </h3>
+                      <div className="space-y-1.5">
+                        {project.category && (
+                          <span className="text-[0.7rem] font-medium uppercase tracking-[0.18em] text-[#f0abfc]/80">
+                            {project.category}
+                          </span>
+                        )}
+                        <h3 className="text-xl font-semibold text-white">
+                          {project.title}
+                        </h3>
+                      </div>
 
                       <p className="text-sm text-gray-300 leading-relaxed max-h-28 overflow-hidden">
                         {project.description}

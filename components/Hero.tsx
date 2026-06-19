@@ -41,11 +41,16 @@ export default function Hero() {
         >
           {/* Left content */}
           <div className="space-y-8">
+            <motion.div variants={item} className="eyebrow">
+              <span className="h-px w-8 bg-gradient-to-r from-[#c084fc] to-transparent" />
+              UI/UX · Frontend Development
+            </motion.div>
+
             <motion.h1
               variants={item}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight"
+              className="text-4xl sm:text-5xl lg:text-[4.25rem] font-bold leading-[1.05] tracking-tight"
             >
-              <span className="block">Hii</span>
+              <span className="block text-white/90">Hii</span>
               <span className="block text-gradient mt-1">
                 I'm Divijaa Arjun
               </span>
@@ -62,7 +67,7 @@ export default function Hero() {
             </motion.div> */}
 
             <motion.div variants={item} className="space-y-1">
-              <p className="text-base sm:text-lg text-gray-200 max-w-2xl leading-relaxed">
+              <p className="text-base sm:text-lg text-[#bcb6c9] max-w-2xl leading-relaxed">
                 Designer and developer focused on building purposeful digital
                 experiences. I work across UI/UX, frontend, and app development
                 to turn ideas into intuitive and functional products.
@@ -72,16 +77,16 @@ export default function Hero() {
             <motion.div variants={item} className="flex flex-wrap gap-4">
               <a
                 href="#projects"
-                className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-[#f5d0fe] to-[#c084fc] text-[#2b0d3b] font-semibold shadow-lg hover:shadow-purple-500/10 transition-transform hover:-translate-y-0.5"
+                className="group inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#f5d0fe] to-[#c084fc] text-[#2b0d3b] font-semibold shadow-[0_8px_30px_-8px_rgba(192,132,252,0.6)] hover:shadow-[0_12px_40px_-8px_rgba(192,132,252,0.8)] transition-all hover:-translate-y-0.5"
               >
                 My Projects
-                <ArrowRight size={18} />
+                <ArrowRight size={18} className="transition-transform group-hover:translate-x-0.5" />
               </a>
               <a
                 href="https://drive.google.com/file/d/1xaXA91DJRvQV5pcfCVJ-QFSYnRvhodHy/view?usp=drive_link"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 py-3 rounded-full border border-white/20 bg-white/10 font-semibold hover:bg-white/15 transition-transform hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-white/15 bg-white/5 font-semibold text-white/90 hover:bg-white/10 hover:border-white/25 transition-all hover:-translate-y-0.5"
               >
                 Download Resume
                 <Download size={18} />
@@ -108,7 +113,7 @@ export default function Hero() {
                   href={href}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white/10 transition-transform hover:-translate-y-1"
+                  className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:border-[#c084fc]/40 transition-all hover:-translate-y-1"
                 >
                   <Icon size={18} />
                 </a>

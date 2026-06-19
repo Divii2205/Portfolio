@@ -1,12 +1,18 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Space_Grotesk } from 'next/font/google'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['500', '600', '700'],
+  variable: '--font-display',
+})
 
 export const metadata: Metadata = {
-  title: 'Divijaa 😎',
-  description: 'A unique portfolio showcasing creative design and development work',
+  title: 'Divijaa Arjun 😎',
+  description:
+    'Portfolio of Divijaa Arjun, a frontend developer and UI/UX designer building purposeful, intuitive digital experiences.',
 }
 
 export default function RootLayout({
@@ -16,10 +22,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} font-sans antialiased bg-black text-white`}>
+      <body
+        className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased bg-[#07060b] text-white`}
+      >
         {children}
       </body>
     </html>
   )
 }
-

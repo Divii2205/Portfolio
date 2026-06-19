@@ -135,12 +135,18 @@ export default function About() {
       const padding = 10;
       const radius = base + role.text.length * charFactor + padding;
 
+      // Deterministic initial spread (circle by index) so server and client
+      // render identically — random seeding here caused a hydration mismatch.
+      // The force simulation expands these into the ball shape after mount.
+      const angle = (i / roles.length) * Math.PI * 2;
+      const spread = 40;
+
       return {
         ...role,
         id: i,
         radius,
-        x: 200 + Math.random() * 40 - 20,
-        y: 200 + Math.random() * 40 - 20,
+        x: 200 + Math.cos(angle) * spread,
+        y: 200 + Math.sin(angle) * spread,
         vx: 0,
         vy: 0,
       };
@@ -264,11 +270,22 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="space-y-8 text-lg text-gray-300 leading-relaxed relative"
+            className="space-y-6 text-lg text-gray-300 leading-relaxed relative"
           >
             <div className="absolute -left-8 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-purple-500/50 to-transparent hidden lg:block" />
 
-            <p className="glass-effect p-8 rounded-3xl border border-white/5 relative overflow-hidden group hover:border-purple-500/30 transition-colors">
+            <div className="space-y-3">
+              <span className="eyebrow">
+                <span className="h-px w-8 bg-gradient-to-r from-[#c084fc] to-transparent" />
+                About
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
+                A bit about{" "}
+                <span className="text-gradient">me</span>
+              </h2>
+            </div>
+
+            <p className="glass-effect p-8 rounded-3xl relative overflow-hidden group hover:border-purple-500/30 transition-colors">
               Meet me, <br /> a developer and designer who enjoys building
               thoughtful digital experiences. I work across frontend and app
               development, while also exploring UI and product design to create

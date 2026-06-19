@@ -20,10 +20,8 @@ export default function Experience() {
     <>
       <section
         id="experience"
-        className="py-20 px-4 relative bg-black"
+        className="py-20 px-4 relative"
       >
-        {/* Background Atmosphere */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(124,58,237,0.05),_transparent_70%)]" />
 
         <div className="max-w-6xl mx-auto relative z-10" ref={containerRef}>
           {/* Header */}
@@ -31,9 +29,14 @@ export default function Experience() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
-            className="sticky top-0 z-40 text-center bg-black/80 backdrop-blur-md pt-6 pb-20 -mx-16 px-4"
+            className="sticky top-0 z-40 text-center bg-[#07060b]/85 backdrop-blur-md pt-6 pb-20 -mx-16 px-4 space-y-3"
           >
-            <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tighter leading-[0.9] mb-2">
+            <span className="eyebrow justify-center">
+              <span className="h-px w-8 bg-gradient-to-r from-transparent to-[#c084fc]" />
+              Journey
+              <span className="h-px w-8 bg-gradient-to-l from-transparent to-[#c084fc]" />
+            </span>
+            <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tighter leading-[0.9]">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f0abfc] via-[#fda4af] to-[#f0abfc] background-animate">
                 Experience
               </span>

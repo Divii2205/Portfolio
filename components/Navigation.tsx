@@ -29,7 +29,7 @@ export default function Navigation() {
     return (
         <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center justify-center">
             <motion.div
-                className="glass-effect relative flex items-center justify-center overflow-hidden rounded-full cursor-pointer"
+                className="glass-effect relative flex items-center justify-center overflow-hidden rounded-full cursor-pointer shadow-[0_8px_32px_-8px_rgba(0,0,0,0.6)] ring-1 ring-white/5"
                 initial={{ width: 60, height: 60, borderRadius: 999 }}
                 animate={{
                     width: isHovered ? EXPANDED_WIDTH : COLLAPSED_WIDTH,

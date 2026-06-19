@@ -22,6 +22,61 @@ export const projects: ProjectItem[] = [
     image: ["/images/Projects.png"],
   },
   {
+    title: "NotebookLM RAG",
+    category: "AI · RAG App",
+    description:
+    "A document chat app that lets you upload files, ask questions in plain language, and get answers grounded in the uploaded content. Built with a Gemini-backed retrieval pipeline indexed into Qdrant.",
+    tech: ["Next.js", "Gemini", "Qdrant", "RAG"],
+    link: "https://google-notebooklm-2205.vercel.app/",
+    repo: "https://github.com/Divii2205/Google-NotebookLM-RAG",
+    gradient: "from-[#c084fc]/70 via-[#a855f7]/70 to-[#7c3aed]/80",
+    image: ["/images/NotebookLM/live.png"],
+  },
+  {
+    title: "Multi-Persona Chatbot",
+    category: "AI Chatbot",
+    description:
+      "A multi-persona AI chatbot that lets you switch between different AI personalities, each with its own tone, style, and suggested questions. Every persona runs its own conversation thread.",
+    tech: ["Next.js", "TypeScript", "LLM"],
+    link: "https://multi-persona-chatbot.vercel.app/",
+    repo: "https://github.com/Divii2205/Multi-Persona-Chatbot",
+    gradient: "from-[#f5d0fe]/70 via-[#c084fc]/70 to-[#a855f7]/80",
+    image: [
+      "/images/MultiPersona/live.png",
+      "/images/MultiPersona/Chat 01.png"
+    ],
+  },
+  {
+    title: "MoodScape Generator",
+    category: "Creative Web App",
+    description:
+    "A creative app that helps people build a vibe based on how they feel. Pick a mood and it responds with matching visuals and sound to create an immersive atmosphere for relaxing, focusing, or just enjoying the moment.",
+    tech: ["React", "TypeScript", "Web Audio"],
+    link: "https://moodscape-generator.vercel.app/",
+    repo: "https://github.com/Divii2205/MoodScape-Generator",
+    gradient: "from-[#f0abfc]/70 via-[#f472b6]/70 to-[#db2777]/80",
+    image: [
+      "/images/MoodScape/live.png",
+      "/images/MoodScape/dreamy.png",
+      "/images/MoodScape/chaos.png",
+    ],
+  },
+  {
+    title: "Project Manager",
+    category: "Web App",
+    description:
+    "Track your personal projects from idea to shipped — a calm, premium dashboard for everything you build. Manage status, progress, priority, and tech stack across your portfolio in one place.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
+    link: "https://project-manager-taupe-ten.vercel.app/",
+    repo: "https://github.com/Divii2205/Project-Manager",
+    gradient: "from-[#c084fc]/70 via-[#a855f7]/70 to-[#7c3aed]/80",
+    image: [
+      "/images/Project Manager/Dashboard.png",
+      "/images/Project Manager/Project Page.png",
+      "/images/Project Manager/Create Project.png",
+    ],
+  },
+  {
     title: "Blogger",
     category: "Web App",
     description:
@@ -37,47 +92,47 @@ export const projects: ProjectItem[] = [
       "/images/Blogger_SS/Profile.png",
     ],
   },
-  {
-    title: "Coinvert App",
-    category: "App",
-    description:
-      "A React Native mobile application that allows users to convert between different currencies using real-time exchange rates. The app features a clean, intuitive interface and uses the ExchangeRate-API for accurate currency conversion.",
-    tech: ["Typescript", "Kotlin", "Android"],
-    link: "https://github.com/Divii2205/CoinVert",
-    repo: "https://github.com/Divii2205/CoinVert",
-    gradient: "from-[#c084fc]/70 via-[#a855f7]/70 to-[#7c3aed]/80",
-    image: [
-      "/images/Coinvert/Flash Screen.jpeg",
-      "/images/Coinvert/Working.jpeg",
-    ],
-  },
-  {
-    title: "Deadline Tracker",
-    category: "Web App",
-    description:
-      "A powerful, user-friendly deadline tracking dashboard designed to help you track, and manage your important events, projects, and tasks hassle free! It helps you stay up to date with task completion! This is specially made to track my college related deadlines!",
-    tech: ["Javascript", "Local Storage"],
-    link: "https://deadline-tracker-v0.vercel.app/",
-    repo: "https://github.com/Divii2205/DeadlineTracker",
-    gradient: "from-[#a78bfa]/70 via-[#8b5cf6]/70 to-[#7c3aed]/80",
-    image: [
-      "/images/Deadline Tracker_SS/Home page.png",
-      "/images/Deadline Tracker_SS/Calendar View.png",
-    ],
-  },
-  {
-    title: "Translation Tools",
-    category: "Web App",
-    description:
-      "This project contains two primary tools: a Dictionary and a Language Translator. These tools help users to find word meanings, synonyms, antonyms, and examples or translate text between languages.",
-    tech: ["Javascript", "API Integration"],
-    link: "https://divii2205.github.io/Translator-Dictionary/",
-    repo: "https://github.com/Divii2205/Translator-Dictionary",
-    gradient: "from-[#f0abfc]/70 via-[#f472b6]/70 to-[#db2777]/80",
-    image: [
-      "/images/Translator/Landing Page.png",
-      "/images/Translator/Dictionary.png",
-      "/images/Translator/Translation.png",
-    ],
-  },
+  // {
+  //   title: "Coinvert App",
+  //   category: "App",
+  //   description:
+  //     "A React Native mobile application that allows users to convert between different currencies using real-time exchange rates. The app features a clean, intuitive interface and uses the ExchangeRate-API for accurate currency conversion.",
+  //   tech: ["Typescript", "Kotlin", "Android"],
+  //   link: "https://github.com/Divii2205/CoinVert",
+  //   repo: "https://github.com/Divii2205/CoinVert",
+  //   gradient: "from-[#c084fc]/70 via-[#a855f7]/70 to-[#7c3aed]/80",
+  //   image: [
+  //     "/images/Coinvert/Flash Screen.jpeg",
+  //     "/images/Coinvert/Working.jpeg",
+  //   ],
+  // },
+  // {
+  //   title: "Deadline Tracker",
+  //   category: "Web App",
+  //   description:
+  //     "A powerful, user-friendly deadline tracking dashboard designed to help you track, and manage your important events, projects, and tasks hassle free! It helps you stay up to date with task completion! This is specially made to track my college related deadlines!",
+  //   tech: ["Javascript", "Local Storage"],
+  //   link: "https://deadline-tracker-v0.vercel.app/",
+  //   repo: "https://github.com/Divii2205/DeadlineTracker",
+  //   gradient: "from-[#a78bfa]/70 via-[#8b5cf6]/70 to-[#7c3aed]/80",
+  //   image: [
+  //     "/images/Deadline Tracker_SS/Home page.png",
+  //     "/images/Deadline Tracker_SS/Calendar View.png",
+  //   ],
+  // },
+  // {
+  //   title: "Translation Tools",
+  //   category: "Web App",
+  //   description:
+  //     "This project contains two primary tools: a Dictionary and a Language Translator. These tools help users to find word meanings, synonyms, antonyms, and examples or translate text between languages.",
+  //   tech: ["Javascript", "API Integration"],
+  //   link: "https://divii2205.github.io/Translator-Dictionary/",
+  //   repo: "https://github.com/Divii2205/Translator-Dictionary",
+  //   gradient: "from-[#f0abfc]/70 via-[#f472b6]/70 to-[#db2777]/80",
+  //   image: [
+  //     "/images/Translator/Landing Page.png",
+  //     "/images/Translator/Dictionary.png",
+  //     "/images/Translator/Translation.png",
+  //   ],
+  // },
 ];

@@ -4,6 +4,13 @@
 
 :root {
   --font-inter: 'Inter', system-ui, sans-serif;
+
+  /* Design tokens — single source of truth for the palette */
+  --ground: #07060b;
+  --text: #ece9f1;
+  --text-muted: #a39db4;
+  --accent: #c084fc;
+  --accent-2: #fda4af;
 }
 
 * {
@@ -19,6 +26,18 @@ html {
 
 body {
   overflow-x: hidden;
+  background-color: var(--ground);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@layer base {
+  /* Display face for headings; body stays Inter */
+  h1, h2, h3 {
+    font-family: var(--font-display), var(--font-inter);
+    letter-spacing: -0.02em;
+  }
 }
 
 @layer utilities {
@@ -26,28 +45,39 @@ body {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-[#d8b4fe] via-[#f0abfc] to-[#fda4af];
   }
 
+  /* Refined glass: layered translucency + a faint top highlight for depth */
   .glass-effect {
-    @apply bg-white/10 backdrop-blur-md border border-white/10;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06) 0%,
+      rgba(255, 255, 255, 0.025) 100%
+    );
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .hover-lift {
     @apply transition-transform duration-300 hover:-translate-y-2;
   }
+
+  /* Small uppercase section label */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.25em] text-[#a39db4];
+  }
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 6px;
   background: transparent;
 }
 
-/* Default hidden state */
 ::-webkit-scrollbar-thumb {
   background: transparent;
-  border-radius: 5px;
+  border-radius: 6px;
 }
 
-/* Show when scrolling */
 html.scrolling ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg,
       #7c3aed 0%,
@@ -55,7 +85,7 @@ html.scrolling ::-webkit-scrollbar-thumb {
       #7c3aed 100%);
   background-size: 100% 200%;
   background-position: top;
-  border-radius: 5px;
+  border-radius: 6px;
   transition: background-position 2s ease;
 }
 
@@ -90,8 +120,31 @@ button {
   transition: all 0.25s ease;
 }
 
-/* Selection */
+/* Keyboard focus — visible accent ring for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid rgba(192, 132, 252, 0.7);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* Selection — on-brand violet/rose, not the old blue */
 ::selection {
-  background: rgba(37, 99, 235, 0.35);
-  color: white;
+  background: rgba(192, 132, 252, 0.32);
+  color: #ffffff;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

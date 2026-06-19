@@ -89,7 +89,7 @@ export default function Cursor({ mousePosition }: CursorProps) {
           borderRadius: 999,
           opacity: isHovering ? 0 : 1,
           scale: isClicking ? 0.95 : 1,
-          borderColor: isHovering ? 'transparent' : 'rgba(192, 132, 252, 0.5)',
+          borderColor: isHovering ? 'rgba(192, 132, 252, 0)' : 'rgba(192, 132, 252, 0.5)',
           rotate: 0,
         }}
         transition={{ type: 'spring', stiffness: 220, damping: 22 }}

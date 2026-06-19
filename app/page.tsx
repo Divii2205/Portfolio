@@ -13,6 +13,7 @@ import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import GradientLine from '@/components/GradientLine'
 import Projects from '@/components/Projects'
+import Background from '@/components/Background'
 
 export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -27,6 +28,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen">
+      <Background />
       <Cursor mousePosition={mousePosition} />
       <Navigation />
       <ScrollManager />
