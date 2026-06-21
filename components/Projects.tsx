@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Github } from "lucide-react";
+import { ArrowUpRight, Github } from "lucide-react";
 import { projects } from "@/data/projects";
 
 const fadeUp = {
@@ -14,9 +14,6 @@ const fadeUp = {
     transition: { duration: 0.6, ease: [0.25, 0.8, 0.25, 1] },
   },
 };
-
-// Gradient colors for indicator dots
-const indicatorGradient = ["from-[#f0abfc] to-[#fda4af]", "from-[#fda4af] to-[#f0abfc]"];
 
 export default function Projects() {
   function ImageSlideshow({
@@ -73,7 +70,7 @@ export default function Projects() {
     }, [idx, onIndexChange]);
 
     return (
-      <div className="overflow-hidden rounded-xl border border-white/10 bg-black/20">
+      <div className="overflow-hidden rounded-md border border-[rgba(44,40,36,0.16)] bg-[#e7ddcb]">
         <div className="relative aspect-[4/3]">
           {src && !broken ? (
             <Image
@@ -85,7 +82,7 @@ export default function Projects() {
               sizes="(max-width: 768px) 260px, 360px"
             />
           ) : (
-            <div className="absolute inset-0 flex items-center justify-center bg-black/30 text-gray-400">
+            <div className="absolute inset-0 flex items-center justify-center bg-[#e7ddcb] text-[#6b6358]">
               Image unavailable
             </div>
           )}
@@ -103,7 +100,7 @@ export default function Projects() {
     }, [normalized]);
 
     return (
-      <div className="overflow-hidden rounded-xl border border-white/10 bg-black/20">
+      <div className="overflow-hidden rounded-md border border-[rgba(44,40,36,0.16)] bg-[#e7ddcb]">
         <div className="relative aspect-[4/3]">
           {normalized && !broken ? (
             <Image
@@ -115,7 +112,7 @@ export default function Projects() {
               sizes="(max-width: 768px) 260px, 360px"
             />
           ) : (
-            <div className="absolute inset-0 flex items-center justify-center bg-black/30 text-gray-400">
+            <div className="absolute inset-0 flex items-center justify-center bg-[#e7ddcb] text-[#6b6358]">
               Image unavailable
             </div>
           )}
@@ -179,50 +176,29 @@ export default function Projects() {
     return () => window.removeEventListener("resize", updateScrollState);
   }, []);
 
-  const scrollByAmount = (direction: "left" | "right") => {
-    const el = scrollRef.current;
-    if (!el) return;
-
-    const card = el.querySelector<HTMLElement>("[data-card]");
-    if (!card) return;
-
-    const scrollAmount = card.offsetWidth + 24;
-    el.scrollBy({
-      left: direction === "left" ? -scrollAmount : scrollAmount,
-      behavior: "smooth",
-    });
-  };
-
   return (
-    <section
-      id="projects"
-      className="py-20 px-4 relative overflow-hidden"
-    >
+    <section id="projects" className="py-16 md:py-24 px-6 relative">
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
-          className="text-center mb-14 space-y-3"
+          className="mb-12 space-y-3"
         >
-          <span className="eyebrow justify-center">
-            <span className="h-px w-8 bg-gradient-to-r from-transparent to-[#c084fc]" />
+          <span className="eyebrow">
+            <span className="tick" />
             Selected work
-            <span className="h-px w-8 bg-gradient-to-l from-transparent to-[#c084fc]" />
           </span>
-          <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tighter leading-[0.9]">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f0abfc] via-[#fda4af] to-[#f0abfc] background-animate">
-              Projects
-            </span>
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#2c2824]">
+            Projects
           </h2>
-
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            A few selected works showcasing creativity and code
+          <p className="text-[#6b6358] max-w-2xl">
+            A few selected works showcasing creativity and code.
           </p>
         </motion.div>
 
-        {/* Carousel + Controls */}
+        {/* Carousel */}
         <div className="relative">
           <div
             ref={scrollRef}
@@ -230,9 +206,9 @@ export default function Projects() {
               updateScrollState();
               updateActiveIndex();
             }}
-            className="flex gap-6 items-stretch min-h-0 overflow-x-auto overflow-y-hidden scroll-smooth hide-scrollbar mb-5"
+            className="flex gap-5 items-stretch min-h-0 overflow-x-auto overflow-y-hidden scroll-smooth hide-scrollbar mb-6"
           >
-            {projects.map((project, idx) => {
+            {projects.map((project) => {
               const cardHref = makeHref(project.repo || project.link);
               return (
                 <motion.article
@@ -243,8 +219,8 @@ export default function Projects() {
                   viewport={{ once: false, amount: 0.3 }}
                   data-card
                   className="min-w-[260px] md:min-w-[320px] lg:min-w-[360px] flex flex-col
-                    h-[460px] md:h-[520px] lg:h-[560px] relative rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm
-                    hover:bg-white/[0.07] hover:border-white/20 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_-20px_rgba(192,132,252,0.45)]
+                    h-[460px] md:h-[520px] lg:h-[540px] relative rounded-lg border border-[rgba(44,40,36,0.14)] bg-[#e7ddcb]/40
+                    hover:border-[rgba(44,40,36,0.3)] hover:-translate-y-1
                     transition-all duration-300 cursor-pointer overflow-hidden"
                   onClick={() => {
                     if (cardHref) {
@@ -264,10 +240,6 @@ export default function Projects() {
                     }
                   }}
                 >
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-20`}
-                  />
-
                   <div className="relative p-5 flex flex-col h-full">
                     <div className="space-y-4">
                       {project.image && project.image.length > 1 ? (
@@ -290,42 +262,42 @@ export default function Projects() {
 
                       <div className="space-y-1.5">
                         {project.category && (
-                          <span className="text-[0.7rem] font-medium uppercase tracking-[0.18em] text-[#f0abfc]/80">
+                          <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-[#7d3c3c]">
                             {project.category}
                           </span>
                         )}
-                        <h3 className="text-xl font-semibold text-white">
+                        <h3 className="font-display text-xl font-bold text-[#2c2824]">
                           {project.title}
                         </h3>
                       </div>
 
-                      <p className="text-sm text-gray-300 leading-relaxed max-h-28 overflow-hidden">
+                      <p className="text-sm text-[#4a443c] leading-relaxed max-h-28 overflow-hidden">
                         {project.description}
                       </p>
                     </div>
 
                     <div className="mt-auto pt-3">
-                      <div className="flex flex-wrap gap-2 mb-3">
+                      <div className="flex flex-wrap gap-1.5 mb-4">
                         {project.tech.map((tag) => (
                           <span
                             key={tag}
-                            className="text-xs px-2.5 py-1 rounded-full bg-white/10 text-gray-200"
+                            className="font-mono text-[0.7rem] px-2 py-0.5 rounded border border-[rgba(44,40,36,0.16)] text-[#4a443c]"
                           >
                             {tag}
                           </span>
                         ))}
                       </div>
 
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-4 font-mono text-xs uppercase tracking-wider">
                         {makeHref(project.link) && (
                           <a
                             href={makeHref(project.link)}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-sm font-semibold text-white bg-white/6 hover:bg-white/10 px-3 py-1.5 rounded-xl border border-white/10 backdrop-blur-sm transition focus:outline-none focus:ring-2 focus:ring-white/20"
+                            className="inline-flex items-center gap-1.5 text-[#7d3c3c] hover:text-[#7d3c3c] transition-colors focus:outline-none focus:ring-2 focus:ring-[#7d3c3c]/40 rounded"
                             aria-label={`View ${project.title}`}
                           >
-                            View <ArrowUpRight size={16} />
+                            View <ArrowUpRight size={15} />
                           </a>
                         )}
 
@@ -334,10 +306,10 @@ export default function Projects() {
                             href={makeHref(project.repo)}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-sm font-semibold text-white bg-transparent hover:bg-white/6 px-3 py-1.5 rounded-xl border border-white/10 backdrop-blur-sm transition focus:outline-none focus:ring-2 focus:ring-white/20"
+                            className="inline-flex items-center gap-1.5 text-[#2c2824] hover:text-[#7d3c3c] transition-colors focus:outline-none focus:ring-2 focus:ring-[#7d3c3c]/40 rounded"
                             aria-label={`Code ${project.title}`}
                           >
-                            Code <Github size={16} />
+                            Code <Github size={15} />
                           </a>
                         )}
                       </div>
@@ -348,74 +320,25 @@ export default function Projects() {
             })}
           </div>
 
-          {/* Indicators */}
-          <div className="flex justify-center gap-2 mt-4">
-            {projects.slice(0, projects.length - 2).map((_, i) => {
-              const colorGradient = indicatorGradient[i % indicatorGradient.length];
-              return (
-                <button
-                  key={i}
-                  className={`w-3 h-3 rounded-full transition ${
-                    activeIndex === i
-                      ? `bg-gradient-to-r ${colorGradient}`
-                      : "bg-white/30"
-                  }`}
-                  onClick={() => scrollToIndex(i)}
-                  aria-label={`Go to project ${i + 1}`}
-                />
-              );
-            })}
-          </div>
-
-          {/* Side Controls */}
-          {/*
-          <div className="pointer-events-none absolute inset-y-0 left-0 right-0 flex items-center justify-between">
-            <button
-              onClick={() => scrollByAmount("left")}
-              disabled={!canScrollLeft}
-              className={`pointer-events-auto hidden md:flex items-center justify-center p-3 rounded-full bg-white/10 text-white border border-white/10 backdrop-blur-md bg-black/40 transition
-                ${
-                  canScrollLeft
-                    ? "hover:bg-white/10 text-white"
-                    : "opacity-40 cursor-not-allowed text-white/50"
+          {/* Indicators — one per project */}
+          <div className="flex justify-center gap-2.5 mt-4">
+            {projects.map((_, i) => (
+              <button
+                key={i}
+                className={`h-[3px] rounded-full transition-all ${
+                  activeIndex === i
+                    ? "w-8 bg-[#7d3c3c]"
+                    : "w-4 bg-[rgba(44,40,36,0.22)] hover:bg-[rgba(44,40,36,0.4)]"
                 }`}
-            >
-              <ArrowLeft size={18} />
-            </button>
-
-            <button
-              onClick={() => scrollByAmount("right")}
-              disabled={!canScrollRight}
-              className={`pointer-events-auto hidden md:flex items-center justify-center p-3 rounded-full bg-white/10 text-white border border-white/10 backdrop-blur-md bg-black/40 transition
-                ${
-                  canScrollRight
-                    ? "hover:bg-white/10 text-white"
-                    : "opacity-40 cursor-not-allowed text-white/50"
-                }`}
-            >
-              <ArrowRight size={18} />
-            </button>
+                onClick={() => scrollToIndex(i)}
+                aria-label={`Go to project ${i + 1}`}
+              />
+            ))}
           </div>
-          */}
         </div>
       </div>
 
       <style jsx>{`
-        .background-animate {
-          background-size: 200%;
-          animation: gradient-shift 5s ease infinite;
-        }
-        @keyframes gradient-shift {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
-        }
         /* hide horizontal scrollbar while allowing scroll */
         .hide-scrollbar {
           -ms-overflow-style: none; /* IE and Edge */

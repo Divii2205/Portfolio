@@ -13,7 +13,7 @@ const container = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+    transition: { staggerChildren: 0.12, delayChildren: 0.15 },
   },
 };
 
@@ -30,11 +30,11 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="flex flex-col justify-center min-h-screen overflow-hidden text-white"
+      className="flex flex-col justify-center min-h-screen overflow-hidden"
     >
-      <div className="relative z-1 max-w-6xl mx-auto px-6 py-12 lg:py-16">
+      <div className="relative z-1 max-w-6xl mx-auto w-full px-6 py-12 lg:py-16">
         <motion.div
-          className="grid lg:grid-cols-[1.05fr_0.95fr] gap-12 items-center"
+          className="grid lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-center"
           variants={container}
           initial="hidden"
           animate="visible"
@@ -42,155 +42,115 @@ export default function Hero() {
           {/* Left content */}
           <div className="space-y-8">
             <motion.div variants={item} className="eyebrow">
-              <span className="h-px w-8 bg-gradient-to-r from-[#c084fc] to-transparent" />
-              UI/UX · Frontend Development
+              <span className="tick" />
+              UI/UX · Frontend Developer
             </motion.div>
 
             <motion.h1
               variants={item}
-              className="text-4xl sm:text-5xl lg:text-[4.25rem] font-bold leading-[1.05] tracking-tight"
+              className="font-display font-extrabold leading-[0.95] tracking-tight"
             >
-              <span className="block text-white/90">Hii</span>
-              <span className="block text-gradient mt-1">
-                I'm Divijaa Arjun
+              <span className="block text-[1.5rem] sm:text-[1.75rem] font-mono font-normal tracking-normal text-[#6b6358] mb-3">
+                Hii, I&apos;m
+              </span>
+              <span className="block text-4xl sm:text-5xl lg:text-[4.5rem] whitespace-nowrap text-[#2c2824]">
+                Divijaa <span className="text-[#7d3c3c]">Arjun</span>
               </span>
             </motion.h1>
 
-            {/* <motion.div
+            <motion.p
               variants={item}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm"
+              className="text-lg sm:text-xl text-[#4a443c] max-w-xl leading-relaxed"
             >
-              <Sparkles size={16} className="text-purple-200" />
-              <span className="tracking-wide">
-                Creative Designer and Developer
-              </span>
-            </motion.div> */}
+              Designer and developer focused on building purposeful digital
+              experiences. I work across UI/UX, frontend, and app development to
+              turn ideas into intuitive and functional products.
+            </motion.p>
 
-            <motion.div variants={item} className="space-y-1">
-              <p className="text-base sm:text-lg text-[#bcb6c9] max-w-2xl leading-relaxed">
-                Designer and developer focused on building purposeful digital
-                experiences. I work across UI/UX, frontend, and app development
-                to turn ideas into intuitive and functional products.
-              </p>
-            </motion.div>
-
-            <motion.div variants={item} className="flex flex-wrap gap-4">
+            <motion.div variants={item} className="flex flex-wrap gap-4 pt-1">
               <a
                 href="#projects"
-                className="group inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#f5d0fe] to-[#c084fc] text-[#2b0d3b] font-semibold shadow-[0_8px_30px_-8px_rgba(192,132,252,0.6)] hover:shadow-[0_12px_40px_-8px_rgba(192,132,252,0.8)] transition-all hover:-translate-y-0.5"
+                className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#7d3c3c] text-[#f3eee4] font-mono text-sm uppercase tracking-wider hover:bg-[#65302f] transition-colors"
               >
                 My Projects
-                <ArrowRight size={18} className="transition-transform group-hover:translate-x-0.5" />
+                <ArrowRight
+                  size={16}
+                  className="transition-transform group-hover:translate-x-0.5"
+                />
               </a>
               <a
                 href="https://drive.google.com/file/d/1xaXA91DJRvQV5pcfCVJ-QFSYnRvhodHy/view?usp=drive_link"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-white/15 bg-white/5 font-semibold text-white/90 hover:bg-white/10 hover:border-white/25 transition-all hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-[rgba(44,40,36,0.3)] text-[#2c2824] font-mono text-sm uppercase tracking-wider hover:bg-[#2c2824] hover:text-[#f3eee4] transition-colors"
               >
-                Download Resume
-                <Download size={18} />
+                Resume
+                <Download size={16} />
               </a>
             </motion.div>
 
-            <motion.div
-              variants={item}
-              className="flex items-center gap-3 pt-2"
-            >
+            <motion.div variants={item} className="flex items-center gap-3 pt-2">
               {[
                 {
                   Icon: Linkedin,
                   href: "https://www.linkedin.com/in/divijaa-arjun",
+                  label: "LinkedIn",
                 },
                 {
                   Icon: Mail,
                   href: "https://mail.google.com/mail/?view=cm&to=divijaa22am@gmail.com",
+                  label: "Email",
                 },
-                { Icon: Github, href: "https://github.com/Divii2205" },
-              ].map(({ Icon, href }, idx) => (
+                {
+                  Icon: Github,
+                  href: "https://github.com/Divii2205",
+                  label: "GitHub",
+                },
+              ].map(({ Icon, href, label }) => (
                 <a
-                  key={idx}
+                  key={label}
                   href={href}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:border-[#c084fc]/40 transition-all hover:-translate-y-1"
+                  aria-label={label}
+                  className="w-11 h-11 rounded-full border border-[rgba(44,40,36,0.2)] flex items-center justify-center text-[#2c2824] hover:bg-[#7d3c3c] hover:text-[#f3eee4] hover:border-[#7d3c3c] transition-colors"
                 >
-                  <Icon size={18} />
+                  <Icon size={17} />
                 </a>
               ))}
             </motion.div>
           </div>
 
-          {/* Right visual – Video */}
-          <div className="relative w-full h-full flex justify-center pt-0 group">
-            {/* TWEAKABLE PARAMETERS - Modify these to change the frame look */}
-            <div
-              className="relative rounded-3xl overflow-hidden transition-transform duration-500 group-hover:scale-105"
-              style={{
-                width: "100%",
-                maxWidth: "500px",
-                aspectRatio: "1 / 1",
-                maxHeight: "325px",
-              }}
-            >
-              {/* OUTER GLOW LAYER 2 - Secondary glow for depth */}
-              <div className="absolute -inset-0 bg-gradient-to-r from-purple-600/30 via-pink-100/30 to-purple-600/30 rounded-3xl blur-2xl -z-20" />
-
-              {/* INNER GRADIENT BORDER */}
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/40 via-pink-200/40 to-purple-500/40 rounded-3xl p-[2px] -z-10">
-                {/* VIDEO CONTAINER */}
-                <div
-                  className="relative w-full h-full rounded-3xl overflow-hidden bg-black/60 shadow-2xl group-hover:shadow-purple-900/50 transition-shadow duration-500"
-                  style={{
-                    boxShadow:
-                      "0 25px 50px -12px rgba(168, 85, 247, 0.15), 0 0 40px rgba(236, 72, 153, 0.1)",
-                  }}
-                >
-                  <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="w-full h-full object-contain"
-                    style={{
-                      objectFit: "contain",
-                      backgroundColor: "#000000",
-                    }}
-                  >
-                    <source
-                      src="/videos/Video Project 1.mp4"
-                      type="video/mp4"
-                    />
-                    <img
-                      src="/videos/Video Project 1.gif"
-                      alt="Hero video"
-                      className="w-full h-full object-contain"
-                    />
-                  </video>
-
-                  {/* GRADIENT OVERLAY */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none" />
-                </div>
-              </div>
+          {/* Right visual – avatar cut out of its background, floating on the paper */}
+          <motion.div variants={item} className="relative w-full">
+            <div className="flex items-center mb-2">
+              <span className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-[#6b6358]">
+                fig.01
+              </span>
             </div>
 
-            <style jsx>{`
-              @keyframes float-glow {
-                0%,
-                100% {
-                  opacity: 0.5;
-                  filter: blur(8px);
-                }
-                50% {
-                  opacity: 0.8;
-                  filter: blur(12px);
-                }
-              }
-              :global(.animate-glow-pulse) {
-                animation: float-glow 3s ease-in-out infinite;
-              }
-            `}</style>
-          </div>
+            <div className="group relative mx-auto w-full" style={{ maxWidth: "460px" }}>
+              <div className="animate-float">
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  poster="/videos/avatar.png"
+                  aria-label="Animated avatar of Divijaa waving"
+                  className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.03]"
+                  style={{ filter: "drop-shadow(0 18px 28px rgba(44,40,36,0.18))" }}
+                >
+                  <source src="/videos/Me.mp4" type="video/mp4" />
+                  <img
+                    src="/videos/avatar.png"
+                    alt="Avatar of Divijaa waving"
+                    className="w-full h-auto"
+                  />
+                </video>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

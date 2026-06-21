@@ -37,9 +37,10 @@ export default function Home() {
       <TechStack />
       <GradientLine />
       <Projects />
-      {/* <Achievements /> */}
       <GradientLine />
       <Experience />
+      <GradientLine />
+      {/* <Achievements /> */}
       <GradientLine />
       <Contact />
       <Footer />

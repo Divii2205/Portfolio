@@ -2,16 +2,14 @@
 
 export default function Footer() {
     return (
-        <>
-            <footer className="text-gray-500 pt-10 pb-28 text-sm">
-                <div className="max-w-5xl mx-auto px-4">
-                    <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6" />
-                    <p className="text-center">
-                        &copy; {new Date().getFullYear()} All rights reserved. Designed by{' '}
-                        <span className="text-gray-300 font-medium">Divijaa</span>
-                    </p>
-                </div>
-            </footer>
-        </>
+        <footer className="pt-10 pb-28 text-sm">
+            <div className="max-w-5xl mx-auto px-6">
+                <div className="h-px w-full bg-[rgba(44,40,36,0.14)] mb-6" />
+                <p className="text-center font-mono text-xs uppercase tracking-[0.18em] text-[#6b6358]">
+                    &copy; {new Date().getFullYear()} All rights reserved. Designed by{' '}
+                    <span className="text-[#2c2824]">Divijaa</span>
+                </p>
+            </div>
+        </footer>
     )
 }

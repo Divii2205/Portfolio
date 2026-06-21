@@ -25,7 +25,7 @@ export const projects: ProjectItem[] = [
     title: "NotebookLM RAG",
     category: "AI · RAG App",
     description:
-    "A document chat app that lets you upload files, ask questions in plain language, and get answers grounded in the uploaded content. Built with a Gemini-backed retrieval pipeline indexed into Qdrant.",
+    "A document chat app that lets you upload files, ask questions in plain language, and get answers from the uploaded content. Built with a Gemini-backed retrieval pipeline indexed into Qdrant.",
     tech: ["Next.js", "Gemini", "Qdrant", "RAG"],
     link: "https://google-notebooklm-2205.vercel.app/",
     repo: "https://github.com/Divii2205/Google-NotebookLM-RAG",
@@ -50,7 +50,7 @@ export const projects: ProjectItem[] = [
     title: "MoodScape Generator",
     category: "Creative Web App",
     description:
-    "A creative app that helps people build a vibe based on how they feel. Pick a mood and it responds with matching visuals and sound to create an immersive atmosphere for relaxing, focusing, or just enjoying the moment.",
+    "A creative app that helps people build a vibe based on how they feel. Pick a mood and it responds with matching visuals and sound to create an atmosphere for relaxing, focusing, or just enjoying the moment.",
     tech: ["React", "TypeScript", "Web Audio"],
     link: "https://moodscape-generator.vercel.app/",
     repo: "https://github.com/Divii2205/MoodScape-Generator",

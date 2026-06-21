@@ -74,7 +74,7 @@ export default function Cursor({ mousePosition }: CursorProps) {
           height: isHovering ? 14 : 10,
           borderRadius: isHovering ? 10 : 999,
           scale: isClicking ? 0.9 : 1,
-          backgroundColor: isHovering ? 'rgba(245, 208, 254, 0.95)' : 'rgba(255,255,255,0.9)',
+          backgroundColor: isHovering ? 'rgba(125, 60, 60, 0.95)' : 'rgba(125, 60, 60, 0.95)',
         }}
         transition={{ type: 'spring', stiffness: 700, damping: 35 }}
       />
@@ -89,7 +89,7 @@ export default function Cursor({ mousePosition }: CursorProps) {
           borderRadius: 999,
           opacity: isHovering ? 0 : 1,
           scale: isClicking ? 0.95 : 1,
-          borderColor: isHovering ? 'rgba(192, 132, 252, 0)' : 'rgba(192, 132, 252, 0.5)',
+          borderColor: isHovering ? 'rgba(125, 60, 60, 0)' : 'rgba(125, 60, 60, 0.5)',
           rotate: 0,
         }}
         transition={{ type: 'spring', stiffness: 220, damping: 22 }}
@@ -106,7 +106,7 @@ export default function Cursor({ mousePosition }: CursorProps) {
           animate={{ opacity: 0, scale: 3.2 }}
           transition={{ duration: 0.35, ease: 'easeOut' }}
         >
-          <div className="w-12 h-12 rounded-full border border-[#c084fc]" />
+          <div className="w-12 h-12 rounded-full border border-[#7d3c3c]" />
         </motion.div>
       )}
     </>

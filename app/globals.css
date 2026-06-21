@@ -3,14 +3,22 @@
 @tailwind utilities;
 
 :root {
-  --font-inter: 'Inter', system-ui, sans-serif;
+  /* Fonts */
+  --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-body: 'Newsreader', Georgia, serif;
+  --font-mono: 'Space Mono', ui-monospace, monospace;
 
-  /* Design tokens — single source of truth for the palette */
-  --ground: #07060b;
-  --text: #ece9f1;
-  --text-muted: #a39db4;
-  --accent: #c084fc;
-  --accent-2: #fda4af;
+  /* Palette — single source of truth. Light "studio paper" theme. */
+  --ground: #efe9dd;        /* soft warm off-white — page background */
+  --surface: #e7ddcb;       /* slightly deeper paper — cards / inputs */
+  --text: #2c2824;          /* warm dark grey — primary text (softer than black) */
+  --text-soft: #4a443c;     /* body copy */
+  --text-muted: #6b6358;    /* muted grey for secondary text */
+  --on-accent: #f3eee4;     /* near-paper text sitting on a maroon fill */
+  --line: rgba(44, 40, 36, 0.16);        /* thin borders + dividers */
+  --line-strong: rgba(44, 40, 36, 0.3);  /* stronger hairline */
+  --accent: #7d3c3c;        /* matte maroon — buttons, dot, small fills */
+  --accent-strong: #65302f; /* darker maroon — hover */
 }
 
 * {
@@ -28,46 +36,66 @@ body {
   overflow-x: hidden;
   background-color: var(--ground);
   color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 @layer base {
-  /* Display face for headings; body stays Inter */
+  /* Display face for headings */
   h1, h2, h3 {
-    font-family: var(--font-display), var(--font-inter);
+    font-family: var(--font-display);
     letter-spacing: -0.02em;
+    color: var(--text);
   }
 }
 
 @layer utilities {
+  /* "Highlighted word" in a heading — matte maroon */
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#d8b4fe] via-[#f0abfc] to-[#fda4af];
+    color: var(--accent);
+    -webkit-text-fill-color: var(--accent);
+    background: none;
   }
 
-  /* Refined glass: layered translucency + a faint top highlight for depth */
+  /* Plain card on paper: deeper-paper fill + one hairline border, no blur/glow.
+     Keeps the .glass-effect class name so existing markup re-skins automatically. */
   .glass-effect {
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.06) 0%,
-      rgba(255, 255, 255, 0.025) 100%
-    );
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--surface);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: 1px solid var(--line);
   }
 
   .hover-lift {
-    @apply transition-transform duration-300 hover:-translate-y-2;
+    @apply transition-transform duration-300 hover:-translate-y-1;
   }
 
-  /* Small uppercase section label */
+  /* Small uppercase mono label that opens a section */
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.25em] text-[#a39db4];
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+  }
+
+  /* Short tick used inside eyebrows / labels */
+  .tick {
+    display: inline-block;
+    height: 1px;
+    width: 2rem;
+    background: var(--accent);
   }
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar — neutral on paper */
 ::-webkit-scrollbar {
   width: 6px;
   background: transparent;
@@ -79,25 +107,15 @@ body {
 }
 
 html.scrolling ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg,
-      #7c3aed 0%,
-      #f6c2ff 50%,
-      #7c3aed 100%);
-  background-size: 100% 200%;
-  background-position: top;
+  background: var(--line-strong);
   border-radius: 6px;
-  transition: background-position 2s ease;
 }
 
-html.scrolling ::-webkit-scrollbar-thumb:hover {
-  background-position: bottom;
-}
-
-/* Cursor effect */
+/* Cursor effect (fallback styles; the component sets its own colors inline) */
 .cursor-dot {
   width: 10px;
   height: 10px;
-  background: #e0f2fe;
+  background: var(--text);
   border-radius: 999px;
   position: fixed;
   pointer-events: none;
@@ -107,7 +125,7 @@ html.scrolling ::-webkit-scrollbar-thumb:hover {
 .cursor-outline {
   width: 36px;
   height: 36px;
-  border: 1.5px solid rgba(124, 58, 237, 0.5);
+  border: 1.5px solid var(--line-strong);
   border-radius: 999px;
   position: fixed;
   pointer-events: none;
@@ -120,21 +138,21 @@ button {
   transition: all 0.25s ease;
 }
 
-/* Keyboard focus — visible accent ring for accessibility */
+/* Keyboard focus — visible maroon ring */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid rgba(192, 132, 252, 0.7);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
-/* Selection — on-brand violet/rose, not the old blue */
+/* Selection — maroon on paper */
 ::selection {
-  background: rgba(192, 132, 252, 0.32);
-  color: #ffffff;
+  background: var(--accent);
+  color: var(--on-accent);
 }
 
 /* Respect users who prefer reduced motion */

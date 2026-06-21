@@ -52,12 +52,8 @@ export default function Contact() {
     ]
 
     return (
-        <section id="contact" className="py-24 px-4 relative flex items-center justify-center overflow-hidden">
-            {/* Animated Glows */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-900/20 rounded-full blur-[120px] pointer-events-none animate-pulse-slow" />
-            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-pink-900/20 rounded-full blur-[120px] pointer-events-none animate-pulse-slow" style={{ animationDelay: '2s' }} />
-
-            <div className="w-full max-w-6xl relative z-10 grid lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-20 items-center">
+        <section id="contact" className="py-20 md:py-28 px-6 relative flex items-center justify-center">
+            <div className="w-full max-w-6xl relative z-10 grid lg:grid-cols-[0.85fr_1.15fr] gap-12 lg:gap-20 items-center">
 
                 {/* LEFT: Typography & Socials */}
                 <motion.div
@@ -65,52 +61,49 @@ export default function Contact() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="space-y-12 relative"
+                    className="space-y-10 relative"
                 >
                     {/* Status Indicator */}
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[rgba(44,40,36,0.2)]">
                         <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#7d3c3c] opacity-60"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#7d3c3c]"></span>
                         </span>
-                        <span className="text-xs font-medium text-gray-300 tracking-wide uppercase">Available for work</span>
+                        <span className="font-mono text-[0.7rem] font-medium text-[#6b6358] tracking-[0.18em] uppercase">Available for work</span>
                     </div>
 
-                    <div className="relative">
-                        <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tighter leading-[0.9]">
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f0abfc] via-[#fda4af] to-[#f0abfc]  background-animate">Connect</span>
-                        </h2>
-                    </div>
+                    <h2 className="text-4xl md:text-6xl font-extrabold text-[#2c2824] tracking-tight leading-[0.95]">
+                        Let&apos;s <span className="text-[#7d3c3c]">connect</span>
+                    </h2>
 
-                    <p className="text-gray-400 text-lg leading-relaxed max-w-md font-light">
-                        Got something to share or want to collaborate? <br />
-                        Would love to hear from you! Let’s connect!
+                    <p className="text-[#4a443c] text-lg leading-relaxed max-w-md">
+                        Got something to share or want to collaborate? <br/> Would love to hear from you.
                     </p>
 
-                    <div className="flex flex-col gap-6">
-                        <h3 className="text-sm uppercase tracking-widest text-gray-500 font-semibold">Connect with me</h3>
-                        <div className="flex flex-wrap gap-4">
+                    <div className="flex flex-col gap-5">
+                        <h3 className="eyebrow">
+                            <span className="tick" />
+                            Connect with me
+                        </h3>
+                        <div className="flex flex-wrap gap-3">
                             {socialLinks.map((social, idx) => (
                                 <motion.a
                                     key={idx}
                                     href={social.href}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    whileHover={{ scale: 1.05, y: -2 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="group flex items-center gap-3 px-4 py-2 rounded-2xl border border-white/10 hover:border-purple-500/50 bg-white/5 hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
+                                    whileHover={{ y: -2 }}
+                                    className="group flex items-center gap-3 px-4 py-2 rounded-full border border-[rgba(44,40,36,0.2)] hover:border-[#7d3c3c] hover:bg-[#7d3c3c] transition-colors duration-300"
                                 >
-                                    <div className="p-2 rounded-lg bg-black/40 text-gray-400 group-hover:text-purple-400 transition-colors">
-                                        <social.icon size={15} />
-                                    </div>
-                                    <span className="text-gray-300 group-hover:text-white font-medium transition-colors">{social.label}</span>
+                                    <social.icon size={16} className="text-[#2c2824] group-hover:text-[#f3eee4] transition-colors" />
+                                    <span className="font-mono text-xs uppercase tracking-wider text-[#2c2824] group-hover:text-[#f3eee4] transition-colors">{social.label}</span>
                                 </motion.a>
                             ))}
                         </div>
                     </div>
                 </motion.div>
 
-                {/* RIGHT: High-End Glass Form */}
+                {/* RIGHT: Form */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -118,13 +111,7 @@ export default function Contact() {
                     transition={{ delay: 0.2, duration: 0.8 }}
                     className="relative"
                 >
-                    {/* Glowing Backlight for Form */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-3xl blur-2xl transform rotate-3 scale-105 opacity-50" />
-
-                    <div className="bg-white/[0.03] backdrop-blur-2xl border border-white/10 rounded-3xl p-8 md:p-12 relative overflow-hidden shadow-2xl">
-                        {/* Shimmer effect */}
-                        <div className="absolute top-0 right-[-100%] w-[200%] h-full bg-gradient-to-l from-transparent via-white/5 to-transparent skew-x-12 animate-shimmer pointer-events-none" />
-
+                    <div className="bg-[#e7ddcb]/50 border border-[rgba(44,40,36,0.16)] rounded-xl p-8 md:p-12 relative">
                         <form ref={formRef} onSubmit={handleSubmit} className="space-y-10 relative z-10">
 
                             <div className="space-y-10">
@@ -134,8 +121,6 @@ export default function Contact() {
                                     label="What's your name?"
                                     value={formState.name}
                                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormState({ ...formState, name: e.target.value })}
-                                    focusColor="peer-focus:text-purple-400"
-                                    gradientColor="from-purple-500 to-pink-500"
                                 />
                                 <FormInput
                                     id="email"
@@ -143,8 +128,6 @@ export default function Contact() {
                                     label="What's your email?"
                                     value={formState.email}
                                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormState({ ...formState, email: e.target.value })}
-                                    focusColor="peer-focus:text-pink-400"
-                                    gradientColor="from-pink-500 to-purple-500"
                                 />
                                 <FormInput
                                     id="message"
@@ -152,30 +135,27 @@ export default function Contact() {
                                     label="Your message..."
                                     value={formState.message}
                                     onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setFormState({ ...formState, message: e.target.value })}
-                                    focusColor="peer-focus:text-purple-400"
-                                    gradientColor="from-purple-500 to-pink-500"
                                 />
                             </div>
 
-                            <div className="pt-4 flex items-center justify-between">
+                            <div className="pt-2 flex items-center justify-between">
                                 <motion.button
                                     type="submit"
                                     disabled={status !== 'idle'}
-                                    whileHover={{ scale: 1.02 }}
+                                    whileHover={{ y: -2 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-[#f5d0fe] to-[#c084fc] text-[#2b0d3b] font-semibold shadow-lg hover:shadow-purple-500/10 transition-transform hover:-translate-y-0.5"
-
+                                    className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-[#7d3c3c] text-[#f3eee4] font-mono text-sm uppercase tracking-wider hover:bg-[#65302f] transition-colors disabled:opacity-70"
                                 >
                                     <span className="relative z-10 flex items-center gap-2">
                                         {status === 'idle' && (
-                                            <>Send Message <Send size={16} /></>
+                                            <>Send Message <Send size={15} /></>
                                         )}
                                         {status === 'submitting' && 'Sending...'}
                                         {status === 'success' && (
-                                            <>Sent <CheckCircle size={16} /></>
+                                            <>Sent <CheckCircle size={15} /></>
                                         )}
                                         {status === 'error' && (
-                                            <span className='flex items-center gap-2'>Failed <XCircle size={18} /></span>
+                                            <span className='flex items-center gap-2'>Failed <XCircle size={16} /></span>
                                         )}
                                     </span>
                                 </motion.button>
@@ -185,31 +165,11 @@ export default function Contact() {
                 </motion.div>
             </div>
 
-            <style jsx>{`
-                .background-animate {
-                    background-size: 200%;
-                    animation: gradient-shift 5s ease infinite;
-                }
-                @keyframes gradient-shift {
-                    0% { background-position: 0% 50%; }
-                    50% { background-position: 100% 50%; }
-                    100% { background-position: 0% 50%; }
-                }
-                @keyframes shimmer {
-                    100% { right: 100%; }
-                }
-                .animate-shimmer {
-                    animation: shimmer 8s infinite linear;
-                }
-                .animate-pulse-slow {
-                    animation: pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-                }
-            `}</style>
             <style jsx global>{`
             input,
             textarea {
                 background-color: transparent;
-                color: #ffffff;
+                color: #2c2824;
             }
 
             input:-webkit-autofill,
@@ -218,11 +178,11 @@ export default function Contact() {
             textarea:-webkit-autofill,
             textarea:-webkit-autofill:hover,
             textarea:-webkit-autofill:focus {
-                -webkit-text-fill-color: #fff !important;
+                -webkit-text-fill-color: #2c2824 !important;
                 transition: background-color 9999s ease 0s;
-                -webkit-box-shadow: 0 0 0px 1000px rgba(255,255,255,0) inset !important;
-                box-shadow: 0 0 0px 1000px rgba(255,255,255,0) inset !important;
-                caret-color: #fff;
+                -webkit-box-shadow: 0 0 0px 1000px #efe9dd inset !important;
+                box-shadow: 0 0 0px 1000px #efe9dd inset !important;
+                caret-color: #2c2824;
             }
             `}</style>
         </section>
@@ -230,7 +190,7 @@ export default function Contact() {
 }
 
 // Reusable Input Component for cleanness
-function FormInput({ id, type, label, value, onChange, focusColor, gradientColor }: any) {
+function FormInput({ id, type, label, value, onChange }: any) {
     return (
         <div className="relative group">
             {type === 'textarea' ? (
@@ -240,7 +200,7 @@ function FormInput({ id, type, label, value, onChange, focusColor, gradientColor
                     rows={1}
                     value={value}
                     onChange={onChange}
-                    className="w-full bg-transparent border-b border-white/10 py-4 text-lg text-white placeholder-transparent focus:outline-none focus:border-transparent transition-all peer resize-none min-h-[60px] max-h-[150px] overflow-y-auto custom-scrollbar"
+                    className="w-full bg-transparent border-b border-[rgba(44,40,36,0.2)] py-3 text-lg text-[#2c2824] placeholder-transparent focus:outline-none focus:border-transparent transition-all peer resize-none min-h-[60px] max-h-[150px] overflow-y-auto"
                     placeholder={label}
                     onInput={(e) => {
                         const target = e.target as HTMLTextAreaElement;
@@ -255,19 +215,19 @@ function FormInput({ id, type, label, value, onChange, focusColor, gradientColor
                     required
                     value={value}
                     onChange={onChange}
-                    className="w-full bg-transparent border-b border-white/10 py-4 text-lg text-white placeholder-transparent focus:outline-none focus:border-transparent transition-all peer"
+                    className="w-full bg-transparent border-b border-[rgba(44,40,36,0.2)] py-3 text-lg text-[#2c2824] placeholder-transparent focus:outline-none focus:border-transparent transition-all peer"
                     placeholder={label}
                 />
             )}
             <label
                 htmlFor={id}
-                className={`absolute left-0 -top-3 text-sm text-gray-500 transition-all cursor-text
-                           peer-placeholder-shown:top-4 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-600 
-                           peer-focus:-top-3 peer-focus:text-sm ${focusColor}`}
+                className="absolute left-0 -top-3 font-mono text-[0.7rem] uppercase tracking-[0.15em] text-[#6b6358] transition-all cursor-text
+                           peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:normal-case peer-placeholder-shown:tracking-normal peer-placeholder-shown:text-[#877f72]
+                           peer-focus:-top-3 peer-focus:text-[0.7rem] peer-focus:uppercase peer-focus:tracking-[0.15em] peer-focus:text-[#7d3c3c]"
             >
                 {label}
             </label>
-            <div className={`absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r ${gradientColor} transition-all duration-500 peer-focus:w-full`} />
+            <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#7d3c3c] transition-all duration-500 peer-focus:w-full" />
         </div>
     )
 }
