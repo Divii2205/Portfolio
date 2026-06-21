@@ -123,30 +123,30 @@ export default function Hero() {
 
           {/* Right visual – avatar cut out of its background, floating on the paper */}
           <motion.div variants={item} className="relative w-full">
-            <div className="flex items-center mb-2">
-              <span className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-[#6b6358]">
-                fig.01
-              </span>
-            </div>
-
-            <div className="group relative mx-auto w-full" style={{ maxWidth: "460px" }}>
+            <div className="group relative mx-auto w-full" style={{ maxWidth: "420px" }}>
               <div className="animate-float">
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  aria-label="Animated avatar of Divijaa waving"
-                  className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.03]"
-                  style={{ filter: "drop-shadow(0 18px 28px rgba(44,40,36,0.18))" }}
-                >
-                  <source src="/videos/Web.mp4" type="video/mp4" />
-                  <img
-                    src="/videos/avatar.png"
-                    alt="Avatar of Divijaa waving"
-                    className="w-full h-auto"
-                  />
-                </video>
+                {/* Polaroid frame: thin white border on top/sides, thicker at the bottom */}
+                <div className="-rotate-2 group-hover:rotate-0 transition-transform duration-500 rounded-[3px] bg-[#fdfbf6] px-3 pt-3 pb-0 border border-[rgba(44,40,36,0.06)] shadow-[0_18px_34px_rgba(44,40,36,0.2)]">
+                  {/* the "photo" — the video fills it edge to edge */}
+                  <div className="overflow-hidden rounded-[1px] bg-[#e7ddcb] border border-[rgba(44,40,36,0.08)]">
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      aria-label="Animated avatar of Divijaa waving"
+                      className="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.04]"
+                    >
+                      <source src="/videos/Web.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                  {/* thick bottom strip with a handwritten-style caption */}
+                  <div className="pt-4 pb-3 text-center">
+                    <span className="font-mono text-[0.72rem] tracking-[0.18em] text-[#6b6358]">
+                      Manifest Positivity ✨
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </motion.div>
