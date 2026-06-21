@@ -219,7 +219,7 @@ export default function Projects() {
                   viewport={{ once: false, amount: 0.3 }}
                   data-card
                   className="min-w-[260px] md:min-w-[320px] lg:min-w-[360px] flex flex-col
-                    h-[460px] md:h-[520px] lg:h-[540px] relative rounded-lg border border-[rgba(44,40,36,0.14)] bg-[#e7ddcb]/40
+                    h-auto md:h-[520px] lg:h-[540px] relative rounded-lg border border-[rgba(44,40,36,0.14)] bg-[#e7ddcb]/40
                     hover:border-[rgba(44,40,36,0.3)] hover:-translate-y-1
                     transition-all duration-300 cursor-pointer overflow-hidden"
                   onClick={() => {
@@ -241,7 +241,7 @@ export default function Projects() {
                   }}
                 >
                   <div className="relative p-5 flex flex-col h-full">
-                    <div className="space-y-4">
+                    <div className="space-y-4 md:flex-1 md:min-h-0 md:overflow-hidden">
                       {project.image && project.image.length > 1 ? (
                         <ImageSlideshow
                           images={project.image}
@@ -271,7 +271,7 @@ export default function Projects() {
                         </h3>
                       </div>
 
-                      <p className="text-sm text-[#4a443c] leading-relaxed max-h-28 overflow-hidden">
+                      <p className="text-sm text-[#4a443c] leading-relaxed md:max-h-28 md:overflow-hidden">
                         {project.description}
                       </p>
                     </div>
@@ -322,7 +322,7 @@ export default function Projects() {
 
           {/* Indicators — one per project */}
           <div className="flex justify-center gap-2.5 mt-4">
-            {projects.map((_, i) => (
+            {projects.slice(0, projects.length - 2).map((_, i) => (
               <button
                 key={i}
                 className={`h-[3px] rounded-full transition-all ${

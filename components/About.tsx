@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState, MouseEvent } from "react";
+import React, { useEffect, useRef, useState, MouseEvent, TouchEvent } from "react";
 import { motion } from "framer-motion";
 import {
   forceSimulation,
@@ -114,13 +114,7 @@ export default function About() {
       .alphaDecay(0.008) // slower decay → keeps a bit of life
       .velocityDecay(0.05) // more glide/momentum
       .on("tick", () => {
-        // keep every bubble fully inside the stage box so none drift off-screen
-        const ns = sim.nodes();
-        for (const n of ns) {
-          n.x = Math.max(n.radius, Math.min(STAGE - n.radius, n.x));
-          n.y = Math.max(n.radius, Math.min(STAGE - n.radius, n.y));
-        }
-        setNodes([...ns]);
+        setNodes([...sim.nodes()]);
       });
 
     simulationRef.current = sim;
@@ -150,16 +144,17 @@ export default function About() {
     return () => ro.disconnect();
   }, []);
 
-  // mouse interaction: stronger, smoother poke effect
-  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+  // shared poke effect — takes a viewport point (cursor or finger) and pushes
+  // nearby bubbles away from it
+  const poke = (clientX: number, clientY: number) => {
     if (!containerRef.current || !simulationRef.current) return;
 
     const rect = containerRef.current.getBoundingClientRect();
     const s = scaleRef.current || 1;
     const off = offsetRef.current || 0;
     // rect is the scaled wrapper; convert back into the stage's coordinate space
-    const mx = (e.clientX - rect.left - off) / s;
-    const my = (e.clientY - rect.top - off) / s;
+    const mx = (clientX - rect.left - off) / s;
+    const my = (clientY - rect.top - off) / s;
 
     const sim = simulationRef.current;
     const maxDist = 260; // bigger influence radius
@@ -179,14 +174,24 @@ export default function About() {
       }
     });
 
-    // raise alpha target so movement continues smoothly while moving mouse
+    // raise alpha target so movement continues smoothly while dragging
     sim.alphaTarget(0.4).restart();
   };
 
-  const handleMouseLeave = () => {
+  const settle = () => {
     if (!simulationRef.current) return;
     // let things gently settle again
     simulationRef.current.alphaTarget(0).alpha(0.25).restart();
+  };
+
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) =>
+    poke(e.clientX, e.clientY);
+
+  // touch: same poke, driven by the moving finger. We don't preventDefault so
+  // the page can still scroll while panning across the cluster.
+  const handleTouchMove = (e: TouchEvent<HTMLDivElement>) => {
+    const t = e.touches[0];
+    if (t) poke(t.clientX, t.clientY);
   };
 
   return (
@@ -197,7 +202,10 @@ export default function About() {
           <motion.div
             ref={containerRef}
             onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
+            onMouseLeave={settle}
+            onTouchStart={handleTouchMove}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={settle}
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: false }}

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Bricolage_Grotesque, Newsreader, Space_Mono } from 'next/font/google'
+// @ts-expect-error -- global CSS import handled by Next.js
 import './globals.css'
 
 // Headings — a modern, characterful sans

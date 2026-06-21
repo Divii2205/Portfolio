@@ -34,6 +34,7 @@ export default function Home() {
       <ScrollManager />
       <Hero />
       <About />
+      <GradientLine />
       <TechStack />
       <GradientLine />
       <Projects />

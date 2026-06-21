@@ -25,7 +25,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  cursor: none !important;
+}
+
+/* Only hide the native cursor where we render the custom one (mouse devices). */
+@media (hover: hover) and (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
 }
 
 html {

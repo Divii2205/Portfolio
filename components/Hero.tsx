@@ -136,12 +136,11 @@ export default function Hero() {
                   muted
                   loop
                   playsInline
-                  poster="/videos/avatar.png"
                   aria-label="Animated avatar of Divijaa waving"
                   className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.03]"
                   style={{ filter: "drop-shadow(0 18px 28px rgba(44,40,36,0.18))" }}
                 >
-                  <source src="/videos/Me.mp4" type="video/mp4" />
+                  <source src="/videos/Web.mp4" type="video/mp4" />
                   <img
                     src="/videos/avatar.png"
                     alt="Avatar of Divijaa waving"

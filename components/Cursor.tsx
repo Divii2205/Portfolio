@@ -10,6 +10,8 @@ type CursorProps = {
 export default function Cursor({ mousePosition }: CursorProps) {
   const [isHovering, setIsHovering] = useState(false)
   const [isClicking, setIsClicking] = useState(false)
+  // Phones/tablets have no mouse — skip the custom cursor entirely there.
+  const [hasMouse, setHasMouse] = useState(false)
 
   const dotX = useMotionValue(-100)
   const dotY = useMotionValue(-100)
@@ -20,6 +22,14 @@ export default function Cursor({ mousePosition }: CursorProps) {
   const dotYSmooth = useSpring(dotY, { stiffness: 3000, damping: 10, mass: 0.1 })
   const outlineXSmooth = useSpring(outlineX, { stiffness: 3000, damping: 10, mass: 0.1 })
   const outlineYSmooth = useSpring(outlineY, { stiffness: 3000, damping: 10, mass: 0.1 })
+
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: hover) and (pointer: fine)')
+    const update = () => setHasMouse(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
 
   useEffect(() => {
     dotX.set(mousePosition.x - 6)
@@ -62,6 +72,8 @@ export default function Cursor({ mousePosition }: CursorProps) {
       document.removeEventListener('mouseup', handleMouseUp)
     }
   }, [])
+
+  if (!hasMouse) return null
 
   return (
     <>

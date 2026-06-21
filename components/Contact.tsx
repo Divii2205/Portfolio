@@ -96,7 +96,7 @@ export default function Contact() {
                                     className="group flex items-center gap-3 px-4 py-2 rounded-full border border-[rgba(44,40,36,0.2)] hover:border-[#7d3c3c] hover:bg-[#7d3c3c] transition-colors duration-300"
                                 >
                                     <social.icon size={16} className="text-[#2c2824] group-hover:text-[#f3eee4] transition-colors" />
-                                    <span className="font-mono text-xs uppercase tracking-wider text-[#2c2824] group-hover:text-[#f3eee4] transition-colors">{social.label}</span>
+                                    {/* <span className="font-mono text-xs uppercase tracking-wider text-[#2c2824] group-hover:text-[#f3eee4] transition-colors">{social.label}</span> */}
                                 </motion.a>
                             ))}
                         </div>
